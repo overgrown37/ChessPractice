@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class Chessman : MonoBehaviour
 {
@@ -202,7 +202,7 @@ public class Chessman : MonoBehaviour
             {
                 CreateAttackMovePlate(x, y);
             }
-            */
+            
         }
     }
 
@@ -334,7 +334,7 @@ public class Chessman : MonoBehaviour
         MovePlate mpScript = mp.GetComponent<MovePlate>();
         mpScript.SetSelected(gameObject);
         mpScript.SetCoords(matrixX, matrixY);
-        */
+        
 
         Tile tile = GameManager.instance.positions[matrixX, matrixY];
         tile.selectedPiece = gameObject;
@@ -359,10 +359,11 @@ public class Chessman : MonoBehaviour
         mpScript.attack = true;
         mpScript.SetSelected(gameObject);
         mpScript.SetCoords(matrixX, matrixY);
-        */
+        
 
         Tile tile = GameManager.instance.positions[matrixX, matrixY];
         tile.selectedPiece = gameObject;
         tile.SetAttack();
     }
 }
+*/

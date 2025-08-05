@@ -25,7 +25,7 @@ public class MouseHandler : MonoBehaviour
             // 이전 타일 원래 색으로 복구
             if (currentTile != null)
             {
-                Tile prevTile = currentTile.GetComponent<Tile>();
+                TileColor prevTile = currentTile.GetComponent<TileColor>();
                 if (prevTile != null)
                     prevTile.SetOriginalColor();
             }
@@ -33,7 +33,7 @@ public class MouseHandler : MonoBehaviour
             // 새 타일 하이라이트
             if (tileUnderCursor != null)
             {
-                Tile newTile = tileUnderCursor.GetComponent<Tile>();
+                TileColor newTile = tileUnderCursor.GetComponent<TileColor>();
                 if (newTile != null)
                     newTile.SetHighlight();
             }

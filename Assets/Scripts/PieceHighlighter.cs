@@ -4,11 +4,11 @@ using UnityEngine;
 public class PieceHighlighter : MonoBehaviour
 {
     private Tween bounceTween;
-    private Chessman chessman = null;
+    private Chesspiece chess = null;
 
     private void Start()
     {
-        chessman = GetComponent<Chessman>();
+        chess = GetComponent<Chesspiece>();
     }
 
     public void Select()
@@ -24,6 +24,6 @@ public class PieceHighlighter : MonoBehaviour
     public void Deselect()
     {
         if (bounceTween != null) bounceTween.Kill();
-        transform.position = chessman.Coords;
+        transform.position = chess.Coords;
     }
 }

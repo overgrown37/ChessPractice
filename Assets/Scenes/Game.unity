@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1579459090}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: moveTrigger
         m_Mode: 1
@@ -403,8 +403,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  minBounds: {x: -1, y: -1}
-  maxBounds: {x: 1, y: 1}
+  minBounds: {x: 0, y: 0}
+  maxBounds: {x: 0, y: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +811,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1579459090}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: AttackTrigger
         m_Mode: 1
@@ -949,8 +949,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579459091}
-  - component: {fileID: 1579459090}
   - component: {fileID: 1579459092}
+  - component: {fileID: 1579459094}
+  - component: {fileID: 1579459095}
+  - component: {fileID: 1579459096}
+  - component: {fileID: 1579459097}
   m_Layer: 0
   m_Name: Controller
   m_TagString: GameController
@@ -958,24 +961,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1579459090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579459089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d090ed6285d05bb4c978edefd36a4036, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chesspiece: {fileID: 2359409214539868742, guid: e52c519c25a66b44691016824007ddb2, type: 3}
-  tile: {fileID: 6498112891774815532, guid: 0761494cf76461f48897a5bab4c31c0e, type: 3}
-  attackButton: {fileID: 444434981}
-  moveButton: {fileID: 1201185703}
-  selected: 0
-  selectedPeice: {fileID: 0}
 --- !u!4 &1579459091
 Transform:
   m_ObjectHideFlags: 0
@@ -1000,7 +985,67 @@ MonoBehaviour:
   m_GameObject: {fileID: 1579459089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ad1f6c40b538004cae802ad61abf1e3, type: 3}
+  m_Script: {fileID: 11500000, guid: d6e987f38e793f04bae54b670e618288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 6498112891774815532, guid: 0761494cf76461f48897a5bab4c31c0e, type: 3}
+  pawn: {fileID: 1198897867608426230, guid: a83dd04620ffc4e498e51911add8daac, type: 3}
+  knight: {fileID: 7431383991091095713, guid: 1f4b162b856f0ed4c92806d88111778e, type: 3}
+  bishop: {fileID: 2229020803687886995, guid: 7b74bcb8ac93f754da03b0a86b689e7f, type: 3}
+  rook: {fileID: 1181055293402932676, guid: 3789d6cc406ed0542ba5060b12e5f8a0, type: 3}
+  queen: {fileID: 2133688197953170580, guid: c08f1d007d70a5544b97b07381871797, type: 3}
+  king: {fileID: 8740750655942831092, guid: 5a460a383c4d2b5448c6007271d2dbac, type: 3}
+--- !u!114 &1579459094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579459089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52bdc2ea6731bcf4f98d6eec01042d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedPiece: {fileID: 0}
+  prevSelectedPiece: {fileID: 0}
+--- !u!114 &1579459095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579459089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d090ed6285d05bb4c978edefd36a4036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: 0
+  playerBlack: []
+  playerWhite: []
+--- !u!114 &1579459096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579459089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868dce4344f99bd499bf05e740a0936f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1579459097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579459089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9471da08e1f00aa41bdea1cefba95d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2101076075

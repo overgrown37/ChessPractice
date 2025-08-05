@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEngine.Rendering;
 
 public class MovePlate : MonoBehaviour
@@ -79,3 +79,4 @@ public class MovePlate : MonoBehaviour
         return selectedPiece; 
     }
 }
+*/
