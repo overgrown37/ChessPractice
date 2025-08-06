@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: -708550720958778540}
   - component: {fileID: 8277105935259238683}
   - component: {fileID: -2202361476912031338}
-  - component: {fileID: 3904547584399602687}
   m_Layer: 0
   m_Name: knight
   m_TagString: Untagged
@@ -105,7 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d374ef4c23ff9fd4e84544f53270c97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  white: {fileID: 8769669200613306614, guid: 134fa33877eda83478ab3636a9b7d425, type: 3}
+  black: {fileID: -334450713805299198, guid: bbe15b2bab784b945ab629ee269f655b, type: 3}
+  Coords: {x: 0, y: 0, z: 0}
+  player: 
 --- !u!114 &6514472125878980908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,19 +192,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb95c8200664adf4c871424afcc59a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3904547584399602687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7431383991091095713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df5e211cdcd43bf429e5afe4909e1e29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  white: {fileID: 8769669200613306614, guid: 134fa33877eda83478ab3636a9b7d425, type: 3}
-  black: {fileID: -334450713805299198, guid: bbe15b2bab784b945ab629ee269f655b, type: 3}
-  Coords: {x: 0, y: 0, z: 0}
-  player: 

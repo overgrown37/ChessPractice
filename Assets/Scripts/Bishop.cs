@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public class Bishop : MonoBehaviour
+public class Bishop : Chesspiece
 {
-    public int hp = 3;
+    private void Start()
+    {
+        hp = 3;
+        skillCount = 2;
+    }
 }

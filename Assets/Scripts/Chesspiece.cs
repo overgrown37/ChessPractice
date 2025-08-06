@@ -6,6 +6,8 @@ public class Chesspiece : MonoBehaviour
     private int yBoard = -1;
 
     protected int hp;
+    protected int skillCount;
+
     public Sprite white, black;
 
     public Vector3 Coords = new Vector3();//체스말의 화면상의 좌표(UI 효과를 위해 따로 추가)
@@ -44,5 +46,17 @@ public class Chesspiece : MonoBehaviour
     public void SetYBoard(int y)//y좌표 설정
     {
         yBoard = y;
+    }
+    public virtual void move()
+    {
+
+    }
+    public virtual void attack() 
+    {
+
+    }
+    public virtual void rangedAttack()
+    {
+        
     }
 }

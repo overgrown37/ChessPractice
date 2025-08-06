@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Knight : MonoBehaviour
+public class Knight : Chesspiece
 {
-    public int hp = 3;
     private void Start()
     {
-
+        hp = 3;
+        skillCount = 2;
     }
 }

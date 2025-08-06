@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Pawn : MonoBehaviour
+public class Pawn : Chesspiece
 {
-    public int hp = 3;
     private void Start()
     {
-
+        hp = 3;
+        skillCount = 2;
     }
 }
 

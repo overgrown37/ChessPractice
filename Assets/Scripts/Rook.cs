@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Rook : MonoBehaviour
+public class Rook : Chesspiece
 {
-    public int hp = 3;
     private void Start()
     {
-
+        hp = 3;
+        skillCount = 2;
     }
 }

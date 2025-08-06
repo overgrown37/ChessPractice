@@ -1,11 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class King : MonoBehaviour
+public class King : Chesspiece
 {
-    public int hp = 3;
     private void Start()
     {
-
+        hp = 3;
+        skillCount = 3;
     }
 }

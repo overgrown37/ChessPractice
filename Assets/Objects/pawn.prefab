@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5643447704145243629}
   - component: {fileID: -2176948721324856973}
   - component: {fileID: -8241320520645089400}
-  - component: {fileID: -115078966210935454}
   m_Layer: 0
   m_Name: pawn
   m_TagString: Untagged
@@ -105,7 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971ac3a4f93a9154daf2e8b3a5190af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  white: {fileID: 5580225292014371162, guid: e26da138e2a0d2b439b8fdcc2f2a6d1a, type: 3}
+  black: {fileID: -4341603147912474925, guid: 909e85a653cddf6458d4bbceed767166, type: 3}
+  Coords: {x: 0, y: 0, z: 0}
+  player: 
 --- !u!114 &-1873516038973033338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,19 +192,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb95c8200664adf4c871424afcc59a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-115078966210935454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1198897867608426230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df5e211cdcd43bf429e5afe4909e1e29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  white: {fileID: 5580225292014371162, guid: e26da138e2a0d2b439b8fdcc2f2a6d1a, type: 3}
-  black: {fileID: -4341603147912474925, guid: 909e85a653cddf6458d4bbceed767166, type: 3}
-  Coords: {x: 0, y: 0, z: 0}
-  player: 
