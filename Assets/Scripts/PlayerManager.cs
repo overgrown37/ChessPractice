@@ -14,10 +14,12 @@ public class PlayerManager : MonoBehaviour
     {
         if (player == "black")
         {
+            Debug.Log("Next Player: White");
             player = "white";
         }
         else
         {
+            Debug.Log("Next Player: Black");
             player = "black";
         }
     }

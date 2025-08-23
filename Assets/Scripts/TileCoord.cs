@@ -4,9 +4,11 @@ public class TileCoord : MonoBehaviour
 {
     private int xBoard = -1;// 타일 상의 좌표
     private int yBoard = -1;
-
+    [SerializeField]
     private bool moveState = false; // 타일의 상태(클릭 시 이동, 공격, 범위 공격 구현용)
+    [SerializeField]
     private bool attackState = false;
+    [SerializeField]
     private bool rangedAttackState = false;
 
     private GameObject chesspiece = null; // 타일에 위치한 체스말
@@ -57,6 +59,27 @@ public class TileCoord : MonoBehaviour
     public void SetEmptyChesspiece()//타일 위의 체스말 비우기
     {
         chesspiece = null;
+    }
+
+    public void SetMove()//이동 가능 타일로 설정
+    {
+        moveState = true;
+        attackState = false;
+        rangedAttackState = false;
+    }
+
+    public void SetAttack()//공격 가능 타일로 설정
+    {
+        moveState = false;
+        attackState = true;
+        rangedAttackState = false;
+    }
+        
+    public void SetRangedAttack()//공격 범위 내의 타일로 설정
+    {
+        moveState = false;
+        attackState = false;
+        rangedAttackState = true;
     }
 
     public bool IsMove()//이동 가능 타일인가?

@@ -202,9 +202,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: moveTrigger
+      - m_Target: {fileID: 1579459098}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: OnAttackButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -403,8 +403,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  minBounds: {x: 0, y: 0}
-  maxBounds: {x: 0, y: 0}
+  minBounds: {x: -1, y: -1}
+  maxBounds: {x: 1, y: 1}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A
+  m_text: M
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -811,9 +811,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: AttackTrigger
+      - m_Target: {fileID: 1579459098}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: OnMoveButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -954,6 +954,8 @@ GameObject:
   - component: {fileID: 1579459095}
   - component: {fileID: 1579459096}
   - component: {fileID: 1579459097}
+  - component: {fileID: 1579459098}
+  - component: {fileID: 1579459099}
   m_Layer: 0
   m_Name: Controller
   m_TagString: GameController
@@ -1021,7 +1023,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d090ed6285d05bb4c978edefd36a4036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected: 0
   playerBlack: []
   playerWhite: []
 --- !u!114 &1579459096
@@ -1048,6 +1049,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9471da08e1f00aa41bdea1cefba95d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1579459098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579459089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961a7e402c299f14787fdea516b5f475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackButton: {fileID: 444434981}
+  moveButton: {fileID: 1201185703}
+--- !u!114 &1579459099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579459089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03c89e26abc29f499638f88177e92a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xBoard: -1
+  yBoard: -1
+  movePlatePrefab: {fileID: 7540579331091785909, guid: 255954921e537b84f8775f423622435f, type: 3}
 --- !u!1 &2101076075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,7 +1135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: M
+  m_text: A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

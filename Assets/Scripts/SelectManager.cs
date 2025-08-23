@@ -1,35 +1,62 @@
 using UnityEngine;
 
-public class SelectManager : MonoBehaviour
+public class SelectManager : MonoBehaviour// 선택 관리 스크립트
 {
     [SerializeField]
-    private GameObject selectedPiece = null;
+    private GameObject selectedPiece = null;// 현재 선택된 체스말
     [SerializeField]
-    private GameObject prevSelectedPiece = null;
+    private GameObject prevSelectedPiece = null;// 이전에 선택된 체스말
 
-    public GameObject GetSelectedPiece()
+    public GameObject GetSelectedPiece()// 현재 선택된 체스말 반환
     {
         return selectedPiece;
     }
 
-    public void SetSelectedPiece(GameObject piece)
+    public void SetSelectedPiece(GameObject piece)// 현재 선택된 체스말 설정
     {
-        if (selectedPiece != null)
+        if (selectedPiece != null)// 이전에 선택된 체스말이 있다면
         {
-            prevSelectedPiece = selectedPiece;
-            prevSelectedPiece.GetComponent<PieceHighlighter>().Deselect();
+            prevSelectedPiece = selectedPiece;// 이전 선택된 체스말로 저장
+            prevSelectedPiece.GetComponent<PieceHighlighter>().Deselect();// 선택 해제
         }
-        selectedPiece = piece;
-        selectedPiece.GetComponent<PieceHighlighter>().Select();
+        selectedPiece = piece;// 새로 선택된 체스말로 설정
+        selectedPiece.GetComponent<PieceHighlighter>().Select();// 선택된 체스말 하이라이트
+        GameManager.instance.GetComponent<ButtonManager>().ActiveButton();// 버튼 활성화
     }
 
-    public void SetEmptySelectedPiece()
+    public void SetEmptySelectedPiece()// 선택된 체스말을 비우기(이동 및 공격이후 호출하기 위한 것)
+    {
+        if (selectedPiece != null)// 선택된 체스말이 있다면
+        {
+            prevSelectedPiece = selectedPiece;// 이전 선택된 체스말로 저장
+            selectedPiece = null;// 현재 선택된 체스말을 비우기
+            prevSelectedPiece.GetComponent<PieceHighlighter>().Deselect();// 선택 해제
+            GameManager.instance.GetComponent<ButtonManager>().DeactiveButton();// 버튼 비활성화
+        }
+    }
+
+    public void AttackSelectedPiece()// 선택된 체스말의 공격 함수 호출
     {
         if (selectedPiece != null)
         {
-            prevSelectedPiece = selectedPiece;
-            selectedPiece = null;
-            prevSelectedPiece.GetComponent<PieceHighlighter>().Deselect();
+            selectedPiece.GetComponent<Chesspiece>().Attack();// 공격 함수 호출
         }
     }
+
+    public void MoveSelectedPiece()// 선택된 체스말의 이동 함수 호출
+    {
+        if (selectedPiece != null)
+        {
+            selectedPiece.GetComponent<Chesspiece>().Move();// 이동 함수 호출
+        }
+    }
+
+    public void RangedAttackSelectedPiece()
+    {
+        if (selectedPiece != null)
+        {
+            selectedPiece.GetComponent<Chesspiece>().RangedAttack();// 이동 함수 호출
+        }
+    }
+
 }

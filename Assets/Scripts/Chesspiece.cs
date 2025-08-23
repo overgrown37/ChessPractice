@@ -47,15 +47,17 @@ public class Chesspiece : MonoBehaviour
     {
         yBoard = y;
     }
-    public virtual void move()
+    public virtual void Move()
     {
-
+        // 기본 이동 메서드, 각 체스말 클래스에서 오버라이드하여 구현
+        // 예: Pawn, Knight, Bishop 등에서 각각의 이동 로직을 구현
+        // 이 메서드는 SelectManager에서 호출되어야 함
     }
-    public virtual void attack() 
+    public virtual void Attack() 
     {
-
+        
     }
-    public virtual void rangedAttack()
+    public virtual void RangedAttack()
     {
         
     }
