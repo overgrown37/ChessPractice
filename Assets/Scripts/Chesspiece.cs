@@ -47,6 +47,11 @@ public class Chesspiece : MonoBehaviour
     {
         yBoard = y;
     }
+    public int GetSkillCount()
+    {
+        return skillCount;
+    }
+
     public virtual void Move()
     {
         // 기본 이동 메서드, 각 체스말 클래스에서 오버라이드하여 구현
