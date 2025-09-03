@@ -56,6 +56,9 @@ public class Chesspiece : MonoBehaviour
     public void SetHP(int hp)
     {
         this.hp = hp;
+    public int GetSkillCount()
+    {
+        return skillCount;
     }
 
     public virtual void Move()
