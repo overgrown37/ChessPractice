@@ -21,7 +21,6 @@ public class SetMovePlate : MonoBehaviour// 이동 가능한 타일에 표시를
         if (GameManager.instance.PositionOnBoard(xBoard + x, yBoard + y) &&
             GameManager.instance.GetPosition(xBoard + x, yBoard + y) == null)
         {
-                GameManager.instance.positions[xBoard + x, yBoard + y].GetComponent<TileCoord>().SetMove();
                 CreateMovePlate(xBoard + x, yBoard + y);
         }
     }
@@ -34,7 +33,6 @@ public class SetMovePlate : MonoBehaviour// 이동 가능한 타일에 표시를
         while (GameManager.instance.PositionOnBoard(x, y) &&
             GameManager.instance.GetPosition(x, y) == null)
         {
-            GameManager.instance.positions[x, y].GetComponent<TileCoord>().SetMove();
             CreateMovePlate(x, y);
             x += xIncrement;
             y += yIncrement;
@@ -47,6 +45,8 @@ public class SetMovePlate : MonoBehaviour// 이동 가능한 타일에 표시를
         Vector3 tilePos = GameManager.instance.positions[x, y].transform.position;
         // movePlate를 타일의 위치 위에(조금 위로 띄우고 싶으면 z값만 조정) 생성(알 수 없는 이유로 살짝 위치가 이상해져서 보정치를 넣음, 아는 거 있으면 알려주세요)
         Vector3 spawnPos = new Vector3(tilePos.x - 0.0055f, tilePos.y - 0.0055f, tilePos.z - 3.0f);
+
+        GameManager.instance.positions[x, y].GetComponent<TileCoord>().SetMove();
 
         GameObject mp = Instantiate(
             movePlatePrefab,

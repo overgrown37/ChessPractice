@@ -47,6 +47,17 @@ public class Chesspiece : MonoBehaviour
     {
         yBoard = y;
     }
+
+    public int GetHP()
+    {
+        return hp;
+    }
+
+    public void SetHP(int hp)
+    {
+        this.hp = hp;
+    }
+
     public virtual void Move()
     {
         // 기본 이동 메서드, 각 체스말 클래스에서 오버라이드하여 구현

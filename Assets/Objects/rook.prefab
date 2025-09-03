@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3589483442761288508}
   - component: {fileID: -6195204219307233780}
   - component: {fileID: -1832834575007490373}
+  - component: {fileID: -1912043760910452873}
   m_Layer: 0
   m_Name: rook
   m_TagString: Untagged
@@ -190,5 +191,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb95c8200664adf4c871424afcc59a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1912043760910452873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181055293402932676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453a7c07b0d9d6e4fa017b8516d47d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

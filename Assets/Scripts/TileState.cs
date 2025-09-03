@@ -42,7 +42,20 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
             GameObject selectedPiece = GameManager.instance.GetComponent<SelectManager>().GetSelectedPiece();
             if (selectedPiece != null)
             {
+                if (tileCoord.GetChesspiece() != null)
+                {
+                    GameObject targetPiece = tileCoord.GetChesspiece();
+                    Chesspiece targetCp = targetPiece.GetComponent<Chesspiece>();// 공격당하는 체스말의 컴포넌트
+                    Chesspiece attackerCp = selectedPiece.GetComponent<Chesspiece>();// 공격하는 체스말의 컴포넌트
+                    if (attackerCp.player != targetCp.player) // 적군인지 확인
+                    {
+                        targetCp.GetComponent<HpHandler>().Hit(1); // 체스말 피격 처리, 여기서 1은 데미지 값
 
+                        GameManager.instance.GetComponent<SetAttackPlate>().ClearAttackPlates();
+                        GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece(); // 선택된 말 비우기
+                        GameManager.instance.GetComponent<PlayerManager>().NextPlayer(); // 다음 플레이어로 전환
+                    }
+                }
             }
         }
         else if (tileCoord.IsRangedAttack())// 타일이 범위 공격 가능한 상태인지 확인

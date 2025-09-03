@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5643447704145243629}
   - component: {fileID: -2176948721324856973}
   - component: {fileID: -8241320520645089400}
+  - component: {fileID: 6735923196894081803}
   m_Layer: 0
   m_Name: pawn
   m_TagString: Untagged
@@ -190,5 +191,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb95c8200664adf4c871424afcc59a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6735923196894081803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198897867608426230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453a7c07b0d9d6e4fa017b8516d47d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

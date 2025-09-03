@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Bishop : Chesspiece
-{
+{   
     private void Start()
     {
         hp = 3;
@@ -20,7 +20,7 @@ public class Bishop : Chesspiece
     }
     public override void Attack()
     {
-        // Pawn의 공격 로직 구현
+        // bishop의 공격 로직 구현
         Debug.Log("Bishop Attack");
     }
 

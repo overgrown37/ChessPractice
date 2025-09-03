@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4040843729431628158}
   - component: {fileID: -7402374533092423004}
   - component: {fileID: -372130739052457630}
+  - component: {fileID: 1211551482163610830}
   m_Layer: 0
   m_Name: bishop
   m_TagString: Untagged
@@ -190,5 +191,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb95c8200664adf4c871424afcc59a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1211551482163610830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2229020803687886995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453a7c07b0d9d6e4fa017b8516d47d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
