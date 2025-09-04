@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using static SkillDamageList;
 public class Queen : Chesspiece
 {
     private void Start()
@@ -24,7 +24,31 @@ public class Queen : Chesspiece
     }
     public override void Attack()
     {
-        // Pawn의 공격 로직 구현
-        Debug.Log("Queen Attack");
+        int damage = GetDamage(SkillType.BasicAttack);
+        GameManager.instance.GetComponent<SelectManager>().SetSkillDamageSelectedPiece(damage);
+        int x = GetXBoard();
+        int y = GetYBoard();
+        SetAttackPlate setAttackPlate = GameManager.instance.GetComponent<SetAttackPlate>();
+        setAttackPlate.GetPosition();
+        setAttackPlate.LineAttackPlate(1, 0); // 오른쪽
+        setAttackPlate.LineAttackPlate(-1, 0); // 왼쪽
+        setAttackPlate.LineAttackPlate(0, 1); // 위쪽
+        setAttackPlate.LineAttackPlate(0, -1); // 아래쪽
+        setAttackPlate.LineAttackPlate(1, 1); // 오른쪽 위 대각선
+        setAttackPlate.LineAttackPlate(1, -1); // 오른쪽 아래 대각선
+        setAttackPlate.LineAttackPlate(-1, 1); // 왼쪽 위 대각선
+        setAttackPlate.LineAttackPlate(-1, -1); // 왼쪽 아래 대각선
+    }
+    public override int GetDamage(SkillType skill)
+    {
+        switch (skill)
+        {
+            case SkillType.BasicAttack:
+                return 1;
+            case SkillType.SpecialSkill1:
+                return 2;
+            default:
+                return 1;
+        }
     }
 }

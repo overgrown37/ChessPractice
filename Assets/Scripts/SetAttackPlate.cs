@@ -32,6 +32,7 @@ public class SetAttackPlate : MonoBehaviour
         while (GameManager.instance.PositionOnBoard(x, y) &&
             GameManager.instance.GetPosition(x, y) == null)
         {
+            CreateAttackPlate(x, y);
             x += xIncrement;
             y += yIncrement;
         }
@@ -43,7 +44,7 @@ public class SetAttackPlate : MonoBehaviour
     {
         // 타일의 월드 좌표를 가져옴
         Vector3 tilePos = GameManager.instance.positions[x, y].transform.position;
-        // movePlate를 타일의 위치 위에(조금 위로 띄우고 싶으면 z값만 조정) 생성(알 수 없는 이유로 살짝 위치가 이상해져서 보정치를 넣음, 아는 거 있으면 알려주세요)
+        // attackPlate를 타일의 위치 위에(조금 위로 띄우고 싶으면 z값만 조정) 생성(알 수 없는 이유로 살짝 위치가 이상해져서 보정치를 넣음, 아는 거 있으면 알려주세요)
         Vector3 spawnPos = new Vector3(tilePos.x - 0.0055f, tilePos.y - 0.0055f, tilePos.z - 3.0f);
 
         GameManager.instance.positions[x, y].GetComponent<TileCoord>().SetAttack();
@@ -57,10 +58,10 @@ public class SetAttackPlate : MonoBehaviour
 
     public void ClearAttackPlates()// 공격 가능한 타일을 모두 제거
     {
-        GameObject[] movePlates = GameObject.FindGameObjectsWithTag("AttackPlate");
-        foreach (GameObject movePlate in movePlates)
+        GameObject[] attackPlates = GameObject.FindGameObjectsWithTag("AttackPlate");
+        foreach (GameObject attackPlate in attackPlates)
         {
-            Destroy(movePlate);
+            Destroy(attackPlate);
         }
         GameObject[] Tiles = GameObject.FindGameObjectsWithTag("Tile");
         foreach (GameObject Tile in Tiles)

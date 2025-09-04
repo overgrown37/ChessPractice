@@ -13,7 +13,6 @@ public class PieceSelecter : MonoBehaviour// 체스말 선택 스크립트
             &&
             GameManager.instance.GetComponent<PlayerManager>().GetPlayer() == gameObject.GetComponent<Chesspiece>().player)//현재 플레이어가 선택한 체스말과 같은 편인지
         {
-            GameManager.instance.GetComponent<SetMovePlate>().ClearMovePlates(); // 이동 가능한 타일 제거
             GameManager.instance.GetComponent<SelectManager>().SetSelectedPiece(gameObject);// 선택된 체스말 설정
         }
     }

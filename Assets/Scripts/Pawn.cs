@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using static SkillDamageList;
 public class Pawn : Chesspiece
 {
     private void Start()
@@ -26,8 +26,33 @@ public class Pawn : Chesspiece
     }
     public override void Attack()
     {
-        // Pawn의 공격 로직 구현
-        Debug.Log("Pawn Attack");
+        int damage = GetDamage(SkillType.BasicAttack);
+        GameManager.instance.GetComponent<SelectManager>().SetSkillDamageSelectedPiece(damage);
+        int x = GetXBoard();
+        int y = GetYBoard();
+        SetAttackPlate setAttackPlate = GameManager.instance.GetComponent<SetAttackPlate>();
+        setAttackPlate.GetPosition();
+        setAttackPlate.PointAttackPlate(0, 1);
+        setAttackPlate.PointAttackPlate(0, -1);
+        setAttackPlate.PointAttackPlate(- 1, 1);
+        setAttackPlate.PointAttackPlate(- 1, 0);
+        setAttackPlate.PointAttackPlate(- 1, - 1);
+        setAttackPlate.PointAttackPlate(1, 1);
+        setAttackPlate.PointAttackPlate(1, 0);
+        setAttackPlate.PointAttackPlate(1, - 1);
+    }
+
+    public override int GetDamage(SkillType skill)
+    {
+        switch (skill)
+        {
+            case SkillType.BasicAttack:
+                return 1;
+            case SkillType.SpecialSkill1:
+                return 2;
+            default:
+                return 1;
+        }
     }
 }
 

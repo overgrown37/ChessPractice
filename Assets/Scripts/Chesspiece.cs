@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using static SkillDamageList;
 public class Chesspiece : MonoBehaviour
 {
     private int xBoard = -1;//체스말의 좌표
@@ -12,6 +12,8 @@ public class Chesspiece : MonoBehaviour
 
     public Vector3 Coords = new Vector3();//체스말의 화면상의 좌표(UI 효과를 위해 따로 추가)
     public string player;//체스 말이 어느 편인지
+
+
 
     public void SetCoords()// 화면상의 좌표 설정기
     {
@@ -56,6 +58,7 @@ public class Chesspiece : MonoBehaviour
     public void SetHP(int hp)
     {
         this.hp = hp;
+    }
     public int GetSkillCount()
     {
         return skillCount;
@@ -74,5 +77,10 @@ public class Chesspiece : MonoBehaviour
     public virtual void RangedAttack()
     {
         
+    }
+    public virtual int GetDamage(SkillType skill)
+    {
+        // 기본값: 일반 공격
+        return skill == SkillType.BasicAttack ? 1 : 2;
     }
 }

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using static SkillDamageList;
 public class Bishop : Chesspiece
 {   
     private void Start()
@@ -18,11 +18,31 @@ public class Bishop : Chesspiece
         setMovePlate.LineMovePlate(-1, 1); // 왼쪽 위 대각선
         setMovePlate.LineMovePlate(-1, -1); // 왼쪽 아래 대각선
     }
+
     public override void Attack()
     {
-        // bishop의 공격 로직 구현
-        Debug.Log("Bishop Attack");
+        int damage = GetDamage(SkillType.BasicAttack);//기본 공격 유형으로 데미지 설정
+        GameManager.instance.GetComponent<SelectManager>().SetSkillDamageSelectedPiece(damage);//스킬 데미지 설정
+        int x = GetXBoard();
+        int y = GetYBoard();
+        SetAttackPlate setAttackPlate = GameManager.instance.GetComponent<SetAttackPlate>();
+        setAttackPlate.GetPosition();
+        setAttackPlate.LineAttackPlate(1, 1); // 오른쪽 위 대각선
+        setAttackPlate.LineAttackPlate(1, -1); // 오른쪽 아래 대각선
+        setAttackPlate.LineAttackPlate(-1, 1); // 왼쪽 위 대각선
+        setAttackPlate.LineAttackPlate(-1, -1); // 왼쪽 아래 대각선
     }
 
-
+    public override int GetDamage(SkillType skill)
+    {
+        switch (skill)
+        {
+            case SkillType.BasicAttack:
+                return 1;
+            case SkillType.SpecialSkill1:
+                return 2;
+            default:
+                return 1;
+        }
+    }
 }
