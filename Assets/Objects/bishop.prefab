@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1211551482163610830}
   m_Layer: 0
   m_Name: bishop
-  m_TagString: Untagged
+  m_TagString: Chesspeice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.0555556}
+    oldSize: {x: 0.8181818, y: 0.8636364}
     newSize: {x: 1, y: 1.0555556}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

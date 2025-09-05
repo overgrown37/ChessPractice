@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4083373946497332246}
   m_Layer: 0
   m_Name: king
-  m_TagString: Untagged
+  m_TagString: Chesspeice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1111112, y: 1.1111112}
+    oldSize: {x: 0.90909094, y: 0.90909094}
     newSize: {x: 1.1111112, y: 1.1111112}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

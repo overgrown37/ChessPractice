@@ -80,9 +80,4 @@ public class Chesspiece : MonoBehaviour
         // 기본값: 일반 공격
         return skill == SkillType.BasicAttack ? 1 : 2;
     }
-
-    private void Update()
-    {
-        
-    }
 }

@@ -4,14 +4,19 @@ public class CursorManage : MonoBehaviour// 커서 관리 스크립트 여기다
 {
     public Texture2D hand;// 커서로 사용할 손 이미지
     public Texture2D original;// 원래 커서 이미지
-
     public void OnMouseOver()// 마우스가 오브젝트 위에 있을 때 호출되는 함수
     {
-        Cursor.SetCursor(hand, new Vector2(hand.width / 3, 0), CursorMode.Auto); // 손 이미지로 커서 변경
+        Cursor.SetCursor(hand, new Vector2(0, 0), CursorMode.Auto); // 손 이미지로 커서 변경
+        if(GetComponent<Chesspiece>() != null)
+        {
+            Debug.Log(GetComponent<Chesspiece>().GetHP());
+            //여기다가 체력바 띄우는 함수
+        }
     }
 
     public void OnMouseExit()// 마우스가 오브젝트에서 벗어날 때 호출되는 함수
     {
         Cursor.SetCursor(original, new Vector2(0, 0), CursorMode.Auto);// 원래 커서 이미지로 변경
+        //여기다가 체력바 비활성화 함수
     }
 }

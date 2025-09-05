@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6735923196894081803}
   m_Layer: 0
   m_Name: pawn
-  m_TagString: Untagged
+  m_TagString: Chesspeice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.7222222, y: 0.8888889}
+    oldSize: {x: 0.59090906, y: 0.72727275}
     newSize: {x: 0.7222222, y: 0.8888889}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
