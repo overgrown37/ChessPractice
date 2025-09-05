@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class TileCoord : MonoBehaviour
 {
-    private int xBoard = -1;// 타일 상의 좌표
-    private int yBoard = -1;
+    private int xBoard = 0;// 타일 상의 좌표
+    private int yBoard = 0;
     [SerializeField]
     private bool moveState = false; // 타일의 상태(클릭 시 이동, 공격, 범위 공격 구현용)
     [SerializeField]
@@ -18,12 +18,12 @@ public class TileCoord : MonoBehaviour
        float x = xBoard;
        float y = yBoard;
 
-       x *= 0.37f;
-       y *= 0.37f;
-       x += -1.3f;
-       y += -1.3f;
+        //x *= 0.35f;
+        //y *= 0.35f;
+        x += -3.5f;
+        y += -3.5f;
 
-       this.transform.position = new Vector3(x, y, 0);
+        this.transform.position = new Vector3(x, y, 0);
     }
 
     public int GetXBoard()//x좌표 반환

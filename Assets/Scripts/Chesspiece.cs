@@ -2,8 +2,8 @@ using UnityEngine;
 using static SkillDamageList;
 public class Chesspiece : MonoBehaviour
 {
-    private int xBoard = -1;//체스말의 좌표
-    private int yBoard = -1;
+    private int xBoard = 0;//체스말의 좌표
+    private int yBoard = 0;
 
     protected int hp;
     protected int skillCount;
@@ -20,11 +20,11 @@ public class Chesspiece : MonoBehaviour
         float x = xBoard;
         float y = yBoard;
 
-        x *= 0.37f;
-        y *= 0.37f;
+        //x *= 0.37f;
+        //y *= 0.37f;
 
-        x += -1.3f;
-        y += -1.3f;
+        x += -3.5f;
+        y += -3.5f;
 
         Coords = new Vector3(x, y, -1.0f);
         this.transform.position = Coords;
