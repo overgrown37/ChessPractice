@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public GameObject[,] positions = new GameObject[8, 8];// 보드의 타일들을 담을 배열
     public GameObject[] playerBlack;// 흑색 플레이어의 체스말들
     public GameObject[] playerWhite;// 백색 플레이어의 체스말들
-
     private void Awake()
     {
         if (instance == null)// GameManager 싱글톤 패턴 구현
