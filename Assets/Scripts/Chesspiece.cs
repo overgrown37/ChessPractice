@@ -20,9 +20,6 @@ public class Chesspiece : MonoBehaviour
         float x = xBoard;
         float y = yBoard;
 
-        //x *= 0.37f;
-        //y *= 0.37f;
-
         x += -3.5f;
         y += -3.5f;
 
@@ -82,5 +79,10 @@ public class Chesspiece : MonoBehaviour
     {
         // 기본값: 일반 공격
         return skill == SkillType.BasicAttack ? 1 : 2;
+    }
+
+    private void Update()
+    {
+        
     }
 }

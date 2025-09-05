@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
             ChangeView();
         }
     }
-    void ChangeView()
+    public void ChangeView()
     {
         Camera.transform.Rotate(0, 0, 180);
         foreach(var c in playerBlack)

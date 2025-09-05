@@ -18,8 +18,6 @@ public class TileCoord : MonoBehaviour
        float x = xBoard;
        float y = yBoard;
 
-        //x *= 0.35f;
-        //y *= 0.35f;
         x += -3.5f;
         y += -3.5f;
 
