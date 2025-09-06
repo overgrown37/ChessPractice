@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.HableCurve;
 
 public class HPUIController : MonoBehaviour
 {
@@ -13,20 +14,58 @@ public class HPUIController : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < maxHealth; i++)
+        SetHealth(maxHealth, currentHealth);
+    }
+
+    // 체력 설정
+    public void SetHealth(int maxHp, int currentHp)
+    {
+        maxHealth = maxHp;
+        currentHealth = currentHp;
+
+        RefreshSegments();
+    }
+
+    // 세그먼트 생성 (최초 1회)
+    private void CreateSegments()
+    {
+        // 기존 세그먼트 제거
+        foreach (var seg in Segments)
         {
-            var currentSegment = Instantiate(Segment);
-            currentSegment.transform.SetParent(this.gameObject.transform);
-            Segments.Add(currentSegment);
+            Destroy(seg);
         }
-        for (int i = 0; i <= maxHealth - currentHealth; i++)
+        Segments.Clear();
+
+        // 새 세그먼트 생성
+        for (int i = 0; i < maxHealth; i++)
         {
-            Segments.Last().GetComponent<Image>().color = Color.black;
+            var currentSegment = Instantiate(Segment, transform);
+            Segments.Add(currentSegment);
         }
     }
 
-    public void SetHealth(int health)
+    // 세그먼트 색 갱신
+    private void RefreshSegments()
     {
-        health = maxHealth;
+        if (Segments.Count != maxHealth)
+        {
+            CreateSegments();
+        }
+
+        for (int i = 0; i < maxHealth; i++)
+        {
+            var img = Segments[i].GetComponent<Image>();
+            if (i < currentHealth)
+                img.color = Color.green;   // 살아있는 칸
+            else
+                img.color = Color.black; // 잃은 칸
+        }
+    }
+
+    // 체력 감소/회복 함수
+    public void UpdateHealth(int newHp)
+    {
+        currentHealth = Mathf.Clamp(newHp, 0, maxHealth);
+        RefreshSegments();
     }
 }
