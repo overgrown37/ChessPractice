@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] playerBlack;// 흑색 플레이어의 체스말들
     public GameObject[] playerWhite;// 백색 플레이어의 체스말들
     public GameObject Camera; //카메라 회전용
+    public bool isInverted = false; //카메라 회전 확인용
 
     private void Awake()
     {
@@ -53,6 +54,14 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ChangeView();
+            if (isInverted)
+            {
+                isInverted = false;
+            }
+            else
+            {
+                isInverted = true;
+            }
         }
     }
     public void ChangeView()

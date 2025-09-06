@@ -52,11 +52,35 @@ public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 �
 
             if (currentPiece != null)
             {
-                Debug.Log(currentPiece.GetComponent<Chesspiece>().GetHP() + "/" + currentPiece.GetComponent<Chesspiece>().GetMaxHP());
                 HP_BackGround.SetActive(true);
-                HP_Bar.SetActive(true);
-                HP_Bar.GetComponent<HPUIController>().SetHealth(currentPiece.GetComponent<Chesspiece>().GetMaxHP(), currentPiece.GetComponent<Chesspiece>().GetHP());
+                Debug.Log(currentPiece.GetComponent<Chesspiece>().GetHP() + "/" + currentPiece.GetComponent<Chesspiece>().GetMaxHP());
+
+                Vector2 p1 = new Vector2(currentTile.GetComponent<TileCoord>().GetXBoard() * 50 - 175, currentTile.GetComponent<TileCoord>().GetYBoard()*50 - 150);
+                Vector2 p3 = new Vector2(currentTile.GetComponent<TileCoord>().GetXBoard() * -50 + 175, currentTile.GetComponent<TileCoord>().GetYBoard() * -50 + 200);
+
+                GameObject controller = GameObject.Find("Controller");
+                if (controller.GetComponent<GameManager>().isInverted)
+                {
+                    HP_BackGround.GetComponent<RectTransform>().anchoredPosition = p3;
+                }
+                else
+                {
+                    HP_BackGround.GetComponent<RectTransform>().anchoredPosition = p1;
+                }
+
+
+                    HP_Bar.GetComponent<HPUIController>().SetHealth(currentPiece.GetComponent<Chesspiece>().GetMaxHP(), currentPiece.GetComponent<Chesspiece>().GetHP());
             }
+            else
+            {
+                if(HP_BackGround != null)
+                {
+                    Vector2 p2 = new Vector2(-1000, -1000);
+                    HP_BackGround.GetComponent<RectTransform>().anchoredPosition = p2;
+                }
+            }
+
+
         }
     }
 }
