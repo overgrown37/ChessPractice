@@ -47,9 +47,15 @@ public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 �
             currentTile = tileUnderCursor;
 
             currentPiece = PieceOnTile;//
-            if(currentPiece != null)
+            GameObject HP_Bar = GameObject.Find("HP_Bar");
+            GameObject HP_BackGround = GameObject.Find("HP_BackGround");
+
+            if (currentPiece != null)
             {
                 Debug.Log(currentPiece.GetComponent<Chesspiece>().GetHP() + "/" + currentPiece.GetComponent<Chesspiece>().GetMaxHP());
+                HP_BackGround.SetActive(true);
+                HP_Bar.SetActive(true);
+                HP_Bar.GetComponent<HPUIController>().SetHealth(currentPiece.GetComponent<Chesspiece>().GetMaxHP(), currentPiece.GetComponent<Chesspiece>().GetHP());
             }
         }
     }

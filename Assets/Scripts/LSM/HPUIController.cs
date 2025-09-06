@@ -59,7 +59,7 @@ public class HPUIController : MonoBehaviour
             {
                 if ((float)currentHealth / (float)maxHealth > 0.5f)
                 {
-                    img.color = Color.green;   // »ì¾ÆÀÖ´Â Ä­
+                    img.color = Color.green;
                 }
                 else if ((float)currentHealth / (float)maxHealth > 0.25f)
                 {
@@ -72,7 +72,7 @@ public class HPUIController : MonoBehaviour
             }
 
             else
-                img.color = Color.black; // ÀÒÀº Ä­
+                img.color = Color.grey;
         }
     }
 

@@ -196,8 +196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HPUIController
   Segment: {fileID: 2835188398623318071, guid: 9ce4390ef2303774c9030b22e6dfa40d, type: 3}
   Segments: []
-  maxHealth: 5
-  currentHealth: 3
+  maxHealth: 2
+  currentHealth: 1
 --- !u!1 &444434981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1324,7 @@ GameObject:
   - component: {fileID: 2130138094}
   - component: {fileID: 2130138093}
   m_Layer: 5
-  m_Name: Image
+  m_Name: HP_BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
