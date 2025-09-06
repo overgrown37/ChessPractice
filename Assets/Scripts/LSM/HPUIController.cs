@@ -56,7 +56,21 @@ public class HPUIController : MonoBehaviour
         {
             var img = Segments[i].GetComponent<Image>();
             if (i < currentHealth)
-                img.color = Color.green;   // »ì¾ÆÀÖ´Â Ä­
+            {
+                if ((float)currentHealth / (float)maxHealth > 0.5f)
+                {
+                    img.color = Color.green;   // »ì¾ÆÀÖ´Â Ä­
+                }
+                else if ((float)currentHealth / (float)maxHealth > 0.25f)
+                {
+                    img.color = Color.yellow;
+                }
+                else
+                {
+                    img.color = Color.red;
+                }
+            }
+
             else
                 img.color = Color.black; // ÀÒÀº Ä­
         }

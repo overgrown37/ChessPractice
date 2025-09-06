@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8261436184566886353}
   m_Layer: 0
   m_Name: MovePlate
-  m_TagString: Chesspeice
+  m_TagString: MovePlate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("Next Player: White");
             player = "white";
+            
         }
         else
         {
