@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 using static SkillDamageList;
 public class Chesspiece : MonoBehaviour
 {
-    private int xBoard = -1;//체스말의 좌표
-    private int yBoard = -1;
+    private int xBoard = 0;//체스말의 좌표
+    private int yBoard = 0;
 
     protected int hp;
+    protected int MaxHp = 5;//
     protected int skillCount;
 
     public Sprite white, black;
@@ -13,18 +15,13 @@ public class Chesspiece : MonoBehaviour
     public Vector3 Coords = new Vector3();//체스말의 화면상의 좌표(UI 효과를 위해 따로 추가)
     public string player;//체스 말이 어느 편인지
 
-
-
     public void SetCoords()// 화면상의 좌표 설정기
     {
         float x = xBoard;
         float y = yBoard;
 
-        x *= 0.37f;
-        y *= 0.37f;
-
-        x += -1.3f;
-        y += -1.3f;
+        x += -3.5f;
+        y += -3.5f;
 
         Coords = new Vector3(x, y, -1.0f);
         this.transform.position = Coords;
@@ -54,10 +51,17 @@ public class Chesspiece : MonoBehaviour
     {
         return hp;
     }
-
+    public int GetMaxHP()
+    {
+        return MaxHp;
+    }
     public void SetHP(int hp)
     {
         this.hp = hp;
+    }
+    public void SetMaxHP(int maxHP)
+    {
+        this.MaxHp = maxHP;
     }
     public int GetSkillCount()
     {

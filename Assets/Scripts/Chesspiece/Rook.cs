@@ -4,7 +4,7 @@ public class Rook : Chesspiece
 {
     private void Start()
     {
-        hp = 3;
+        hp = 2;
         skillCount = 2;
     }
     public override void Move()
