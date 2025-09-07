@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - MovePlate
-  - Chesspeice
   - Tile
+  - AttackPlate
+  - Chesspiece
   layers:
   - Default
   - TransparentFX

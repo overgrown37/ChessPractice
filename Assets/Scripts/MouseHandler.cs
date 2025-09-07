@@ -1,9 +1,11 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 있을 때 타일 색상을 변경하는 스크립트 CsorManage.cs와 혼동 주의 합쳐도 좋을 듯?
 {
     private GameObject currentTile = null;// 현재 마우스 커서 아래에 있는 타일
     public GameObject currentPiece = null;//
+    public GameObject prevPiece = null;
     void Update()
     {
         GameObject tileUnderCursor = null;// 현재 마우스 커서 아래에 있는 타일을 저장할 변수
@@ -46,12 +48,45 @@ public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 �
             // 현재 타일 업데이트
             currentTile = tileUnderCursor;
 
-            currentPiece = PieceOnTile;//
+            //currentPiece = PieceOnTile;
 
-            if (currentPiece != null)
+            ////if (currentPiece != null)
+            ////{
+            ////    HPUIController.Instance.ShowFromHover(currentPiece);
+            ////    prevPiece = currentPiece;
+            ////}
+            ////else if (prevPiece != null)
+            ////{
+            ////    HPUIController.Instance.OnHoverExit();
+            ////    prevPiece = null;
+            ////}
+            //if (currentPiece != null)
+            //{
+            //    currentPiece.GetComponent<Chesspiece>().ShowUIHover();
+            //    prevPiece = currentPiece;
+            //}
+            //else if (prevPiece != null)
+            //{
+            //    prevPiece.GetComponent<Chesspiece>().HideUIHover();
+            //    prevPiece = null;
+            //}
+        }
+        if (currentPiece != PieceOnTile)
+        {
+            // 이전 기물 UI 끄기
+            if (prevPiece != null)
             {
-                HPUIController.Instance.ShowHealth(currentPiece);
+                prevPiece.GetComponent<Chesspiece>().HideUIHover();
             }
+
+            // 새 기물 UI 켜기
+            if (PieceOnTile != null)
+            {
+                PieceOnTile.GetComponent<Chesspiece>().ShowUIHover();
+            }
+
+            prevPiece = PieceOnTile;
+            currentPiece = PieceOnTile;
         }
     }
 }

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.SceneManagement;
@@ -60,11 +61,8 @@ public class GameManager : MonoBehaviour
     public void ChangeView()
     {
         Camera.transform.Rotate(0, 0, 180);
-        foreach(var c in playerBlack)
-        {
-            c.transform.Rotate(0, 0, 180);
-        }
-        foreach(var c in playerWhite)
+        GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
+        foreach(var c in EveryPiece)
         {
             c.transform.Rotate(0, 0, 180);
         }
