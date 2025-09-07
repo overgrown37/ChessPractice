@@ -57,12 +57,12 @@ public class HPUIController : MonoBehaviour
 
         backgroundRect.gameObject.SetActive(true);
 
-        // 이미 실행 중인 코루틴이 있으면 중지
-        if (hideCoroutine != null)
-            StopCoroutine(hideCoroutine);
+        //// 이미 실행 중인 코루틴이 있으면 중지
+        //if (hideCoroutine != null)
+        //    StopCoroutine(hideCoroutine);
 
-        // 새 코루틴 실행
-        hideCoroutine = StartCoroutine(HideAfterDelay());
+        //// 새 코루틴 실행
+        //hideCoroutine = StartCoroutine(HideAfterDelay());
 
         //Debug.Log(Hp + "/" + maxHp + "(" + xBoard + ", " +yBoard+")");
     }
@@ -146,7 +146,7 @@ public class HPUIController : MonoBehaviour
             }
 
             else
-                img.color = Color.grey;
+                img.color = Color.black;
         }
     }
 

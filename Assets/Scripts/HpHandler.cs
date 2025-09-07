@@ -6,6 +6,9 @@ public class HpHandler : MonoBehaviour
     {
         int currentHp = GetComponent<Chesspiece>().GetHP();
         currentHp = Damage(currentHp, damage);
+
+
+
         if (currentHp <= 0) {
             KillChesspiece();
         }
