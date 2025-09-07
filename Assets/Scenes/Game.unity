@@ -196,6 +196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HPUIController
   Segment: {fileID: 2835188398623318071, guid: 9ce4390ef2303774c9030b22e6dfa40d, type: 3}
   Segments: []
+  worldYOffset: 0.5
+  visibleDuration: 1
   maxHealth: 2
   currentHealth: 1
 --- !u!1 &444434981
@@ -1108,6 +1110,7 @@ MonoBehaviour:
   playerBlack: []
   playerWhite: []
   Camera: {fileID: 519420028}
+  isInverted: 0
 --- !u!114 &1579459096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1348,7 +1351,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1000, y: -1000}
-  m_SizeDelta: {x: 40, y: 10}
+  m_SizeDelta: {x: 45, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2130138093
 MonoBehaviour:

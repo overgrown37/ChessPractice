@@ -54,14 +54,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ChangeView();
-            if (isInverted)
-            {
-                isInverted = false;
-            }
-            else
-            {
-                isInverted = true;
-            }
+            
         }
     }
     public void ChangeView()
@@ -75,5 +68,19 @@ public class GameManager : MonoBehaviour
         {
             c.transform.Rotate(0, 0, 180);
         }
+
+        if (isInverted)
+        {
+            isInverted = false;
+        }
+        else
+        {
+            isInverted = true;
+        }
+    }
+
+    public bool IsInverted()
+    {
+        return isInverted;
     }
 }

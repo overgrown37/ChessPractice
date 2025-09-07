@@ -13,6 +13,6 @@ public class CursorManage : MonoBehaviour// 커서 관리 스크립트 여기다
     public void OnMouseExit()// 마우스가 오브젝트에서 벗어날 때 호출되는 함수
     {
         Cursor.SetCursor(original, new Vector2(0, 0), CursorMode.Auto);// 원래 커서 이미지로 변경
-        //여기다가 체력바 비활성화 함수
+        HPUIController.Instance.ForceHide();
     }
 }
