@@ -8,7 +8,7 @@ using static UnityEngine.Rendering.HableCurve;
 
 public class HPUIController : MonoBehaviour
 {
-    public static HPUIController Instance { get; private set; }
+    //public static HPUIController Instance { get; private set; }
 
     [SerializeField] private GameObject Segment;
     [SerializeField] private List<GameObject> Segments;
@@ -18,7 +18,9 @@ public class HPUIController : MonoBehaviour
 
     [SerializeField] private float worldYOffset = 0.5f;
 
-    [SerializeField] private float visibleDuration = 2f; // Ã¼·Â¹Ù Ç¥½Ã ½Ã°£ (ÃÊ)
+    private bool isHovered = false;
+    private bool isDamageShown = false;
+
     private Coroutine hideCoroutine;
 
     public int maxHealth;
@@ -26,7 +28,12 @@ public class HPUIController : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        //Instance = this;
+
+        if (backgroundRect == null)
+            backgroundRect = GetComponent<RectTransform>();
+
+        //gameObject.SetActive(false); // ±âº»Àº ¼û±è
     }
 
     private void Start()
@@ -67,11 +74,11 @@ public class HPUIController : MonoBehaviour
         //Debug.Log(Hp + "/" + maxHp + "(" + xBoard + ", " +yBoard+")");
     }
 
-    private IEnumerator HideAfterDelay()
+    private IEnumerator HideAfterDelay(float visibleDuration)
     {
         yield return new WaitForSeconds(visibleDuration);
-        backgroundRect.gameObject.SetActive(false);
-        hideCoroutine = null;
+        isDamageShown = false;
+        TryHide();
     }
     public void ForceHide()
     {
@@ -79,6 +86,32 @@ public class HPUIController : MonoBehaviour
             StopCoroutine(hideCoroutine);
         backgroundRect.gameObject.SetActive(false);
     }
+
+    public void ShowFromDamage(GameObject chesspiece, float duration = 2f) //
+    {
+        isDamageShown = true;
+        ShowHealth(chesspiece);
+
+        StopAllCoroutines();
+        StartCoroutine(HideAfterDelay(duration));
+    }
+    public void ShowFromHover(GameObject chesspiece)
+    {
+        isHovered = true;
+        ShowHealth(chesspiece);
+    }
+    public void OnHoverExit()
+    {
+        isHovered = false;
+        TryHide();
+    }
+    private void TryHide()
+    {
+        // Hoverµµ ¾Æ´Ï°í, DamageShownµµ ¾Æ´Ò ¶§¸¸ ¼û±è
+        if (!isHovered && !isDamageShown)
+            backgroundRect.gameObject.SetActive(false);
+    }
+
 
     public void MoveBackground(Vector3 worldPosition)
     {

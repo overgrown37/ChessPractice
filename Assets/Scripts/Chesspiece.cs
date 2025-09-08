@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using static SkillDamageList;
 public class Chesspiece : MonoBehaviour
 {
+    [SerializeField] private GameObject hpUIPrefab;
+    public HPUIController hpUI;//hp바 개별 부여용
+
     private int xBoard = 0;//체스말의 좌표
     private int yBoard = 0;
 
@@ -14,6 +17,30 @@ public class Chesspiece : MonoBehaviour
 
     public Vector3 Coords = new Vector3();//체스말의 화면상의 좌표(UI 효과를 위해 따로 추가)
     public string player;//체스 말이 어느 편인지
+
+    private void Awake()
+    {
+        if (hpUIPrefab == null)
+        {
+            Debug.LogError("HP UI Prefab not assigned on " + gameObject.name);
+            return;
+        }
+
+        Canvas canvas = FindFirstObjectByType<Canvas>();
+        if (canvas == null)
+        {
+            Debug.LogError("No Canvas found in scene!");
+            return;
+        }
+
+        GameObject uiObj = Instantiate(hpUIPrefab, canvas.transform);
+        hpUI = uiObj.GetComponentInChildren<HPUIController>();
+
+        if (hpUI == null)
+        {
+            Debug.LogError("HPUIController not found on prefab " + hpUIPrefab.name);
+        }
+    }
 
     public void SetCoords()// 화면상의 좌표 설정기
     {
@@ -86,5 +113,15 @@ public class Chesspiece : MonoBehaviour
     {
         // 기본값: 일반 공격
         return skill == SkillType.BasicAttack ? 1 : 2;
+    }
+
+    public void ShowUIHover()
+    {
+        hpUI.ShowFromHover(this.gameObject);
+    }
+
+    public void HideUIHover()
+    {
+        hpUI.OnHoverExit();
     }
 }

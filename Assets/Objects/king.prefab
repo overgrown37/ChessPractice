@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4083373946497332246}
   m_Layer: 0
   m_Name: king
-  m_TagString: Chesspeice
+  m_TagString: Chesspiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124cf67fd1fa4724dade70c8be795476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpUIPrefab: {fileID: 1035009294986255265, guid: e643749dba1fffe44bf6783d8bd9b7b7, type: 3}
+  hpUI: {fileID: 0}
   white: {fileID: -3792998861040722889, guid: f2aaf997b01f41f439a0127ed026d032, type: 3}
   black: {fileID: -641104846605737351, guid: 11010a3a2cc6e8d4e85001e507a12394, type: 3}
   Coords: {x: 0, y: 0, z: 0}

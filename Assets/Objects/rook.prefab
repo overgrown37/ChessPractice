@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -1912043760910452873}
   m_Layer: 0
   m_Name: rook
-  m_TagString: Chesspeice
+  m_TagString: Chesspiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6234345558e4b046a420dc34b6d590d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpUIPrefab: {fileID: 1035009294986255265, guid: e643749dba1fffe44bf6783d8bd9b7b7, type: 3}
+  hpUI: {fileID: 0}
   white: {fileID: -8948728166497563328, guid: f954ace7192f0ae48ae2d61124275ae5, type: 3}
   black: {fileID: -7587791273309554880, guid: 2f567a9042e228042ba61cae4972c3c7, type: 3}
   Coords: {x: 0, y: 0, z: 0}

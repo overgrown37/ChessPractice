@@ -6,14 +6,13 @@ public class HpHandler : MonoBehaviour
     {
         int currentHp = GetComponent<Chesspiece>().GetHP();
         currentHp = Damage(currentHp, damage);
-
-
-
         if (currentHp <= 0) {
             KillChesspiece();
         }
         else {
             GetComponent<Chesspiece>().SetHP(currentHp);
+            //HPUIController.Instance.ShowFromDamage(this.gameObject, 2);
+            this.gameObject.GetComponent<Chesspiece>().hpUI.ShowFromDamage(this.gameObject);
         }
     }
 
