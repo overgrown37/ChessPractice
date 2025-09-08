@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviour
             ChangeView();
             
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            MultiAttackCheck();
+
+        }
     }
     public void ChangeView()
     {
@@ -74,6 +80,15 @@ public class GameManager : MonoBehaviour
         else
         {
             isInverted = true;
+        }
+    }
+
+    public void MultiAttackCheck()
+    {
+        GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
+        foreach( var c in EveryPiece)
+        {
+            c.GetComponent<HpHandler>().Hit(1);
         }
     }
 
