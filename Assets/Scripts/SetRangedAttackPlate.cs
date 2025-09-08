@@ -94,7 +94,7 @@ public class SetRangedAttackPlate : MonoBehaviour
         );
     }
 
-    public void ClearAttackPlates()// 공격 가능한 타일을 모두 제거
+    public void ClearRangedAttackPlates()// 공격 가능한 타일을 모두 제거
     {
         GameObject[] rangedAttackPlates = GameObject.FindGameObjectsWithTag("RangedAttackPlate");
         foreach (GameObject rangedAttackPlate in rangedAttackPlates)

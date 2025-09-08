@@ -957,6 +957,7 @@ GameObject:
   - component: {fileID: 1579459098}
   - component: {fileID: 1579459099}
   - component: {fileID: 1579459100}
+  - component: {fileID: 1579459101}
   m_Layer: 0
   m_Name: Controller
   m_TagString: GameController
@@ -1097,6 +1098,21 @@ MonoBehaviour:
   xBoard: -1
   yBoard: -1
   attackPlatePrefab: {fileID: 2984409625463660395, guid: a76100a6b93dd5f4b8901c351fa080b2, type: 3}
+--- !u!114 &1579459101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579459089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7da6334f770edb43b513337c05353b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SetRangedAttackPlate
+  xBoard: -1
+  yBoard: -1
+  RangedAttackPlatePrefab: {fileID: 8134005108681942047, guid: 24f0e84845f2e5948893dbceb0b916bf, type: 3}
 --- !u!1 &2101076075
 GameObject:
   m_ObjectHideFlags: 0

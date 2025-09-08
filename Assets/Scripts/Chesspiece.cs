@@ -123,11 +123,6 @@ public class Chesspiece : MonoBehaviour
     {
         
     }
-    public virtual int GetDamage(SkillType skill)
-    {
-        // 기본값: 일반 공격
-        return skill == SkillType.BasicAttack ? 1 : 2;
-    }
 
     public void ShowUIHover()
     {
