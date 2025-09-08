@@ -11,6 +11,8 @@ public class HpHandler : MonoBehaviour
         }
         else {
             GetComponent<Chesspiece>().SetHP(currentHp);
+            //HPUIController.Instance.ShowFromDamage(this.gameObject, 2);
+            this.gameObject.GetComponent<Chesspiece>().hpUI.ShowFromDamage(this.gameObject);
         }
     }
 

@@ -5,7 +5,7 @@ public class King : Chesspiece
 {
     private void Start()
     {
-        hp = 3;
+        hp = 5;
         skillCount = 3;
     }
     public override void Move()

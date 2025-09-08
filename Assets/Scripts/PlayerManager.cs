@@ -16,11 +16,13 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("Next Player: White");
             player = "white";
+            
         }
         else
         {
             Debug.Log("Next Player: Black");
             player = "black";
         }
+        GetComponent<GameManager>().ChangeView();//턴 바뀌면 시점 변경
     }
 }

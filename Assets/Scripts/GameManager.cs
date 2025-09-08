@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject[,] positions = new GameObject[8, 8];// 보드의 타일들을 담을 배열
     public GameObject[] playerBlack;// 흑색 플레이어의 체스말들
     public GameObject[] playerWhite;// 백색 플레이어의 체스말들
+    public GameObject Camera; //카메라 회전용
+    public bool isInverted = false; //카메라 회전 확인용
 
     private void Awake()
     {
@@ -45,5 +48,37 @@ public class GameManager : MonoBehaviour
         if (x < 0 || y < 0 || x >= positions.GetLength(0) || y>= positions.GetLength(1))
             return false;
         return true;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ChangeView();
+            
+        }
+    }
+    public void ChangeView()
+    {
+        Camera.transform.Rotate(0, 0, 180);
+        GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
+        foreach(var c in EveryPiece)
+        {
+            c.transform.Rotate(0, 0, 180);
+        }
+
+        if (isInverted)
+        {
+            isInverted = false;
+        }
+        else
+        {
+            isInverted = true;
+        }
+    }
+
+    public bool IsInverted()
+    {
+        return isInverted;
     }
 }
