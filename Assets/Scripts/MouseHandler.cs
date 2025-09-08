@@ -47,29 +47,6 @@ public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 �
 
             // 현재 타일 업데이트
             currentTile = tileUnderCursor;
-
-            //currentPiece = PieceOnTile;
-
-            ////if (currentPiece != null)
-            ////{
-            ////    HPUIController.Instance.ShowFromHover(currentPiece);
-            ////    prevPiece = currentPiece;
-            ////}
-            ////else if (prevPiece != null)
-            ////{
-            ////    HPUIController.Instance.OnHoverExit();
-            ////    prevPiece = null;
-            ////}
-            //if (currentPiece != null)
-            //{
-            //    currentPiece.GetComponent<Chesspiece>().ShowUIHover();
-            //    prevPiece = currentPiece;
-            //}
-            //else if (prevPiece != null)
-            //{
-            //    prevPiece.GetComponent<Chesspiece>().HideUIHover();
-            //    prevPiece = null;
-            //}
         }
         if (currentPiece != PieceOnTile)
         {

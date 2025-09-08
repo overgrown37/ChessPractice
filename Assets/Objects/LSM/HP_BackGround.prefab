@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2485678037201959732}
   - component: {fileID: 4028892862737328889}
   - component: {fileID: 2594932265959010954}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HP_BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 854994553900582167}
   - component: {fileID: 5679898377640658088}
   - component: {fileID: 4631064855369688593}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HP_Bar
   m_TagString: Finish
   m_Icon: {fileID: 0}
@@ -154,6 +154,5 @@ MonoBehaviour:
   Segment: {fileID: 2835188398623318071, guid: 9ce4390ef2303774c9030b22e6dfa40d, type: 3}
   Segments: []
   worldYOffset: 0.5
-  visibleDuration: 1
   maxHealth: 2
   currentHealth: 1

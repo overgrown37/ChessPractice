@@ -18,9 +18,12 @@ public class SetAttackPlate : MonoBehaviour
 
     public void PointAttackPlate(int x, int y)// 해당 좌표에 공격 가능한 타일을 표시
     {
-        if (GameManager.instance.PositionOnBoard(xBoard + x, yBoard + y))//MovePlate와 다르게 공격은 적이 있든 없든 표시
+        if (GameManager.instance.PositionOnBoard(xBoard + x, yBoard + y) && 
+            GameManager.instance.GetPosition(xBoard + x, yBoard + y) != null)
         {
-            CreateAttackPlate(xBoard + x, yBoard + y);
+            if(GameManager.instance.GetPosition(xBoard + x, yBoard + y).GetComponent<Chesspiece>().player
+                != GameManager.instance.GetComponent<SelectManager>().GetSelectedPiece().GetComponent<Chesspiece>().player)
+                CreateAttackPlate(xBoard + x, yBoard + y);
         }
     }
 
@@ -32,12 +35,14 @@ public class SetAttackPlate : MonoBehaviour
         while (GameManager.instance.PositionOnBoard(x, y) &&
             GameManager.instance.GetPosition(x, y) == null)
         {
-            CreateAttackPlate(x, y);
             x += xIncrement;
             y += yIncrement;
         }
-        if(GameManager.instance.PositionOnBoard(x, y))
-            CreateAttackPlate(x, y);
+        if(GameManager.instance.PositionOnBoard(x, y) &&
+            GameManager.instance.GetPosition(xBoard + x, yBoard + y) != null)
+            if (GameManager.instance.GetPosition(x, y).GetComponent<Chesspiece>().player
+                != GameManager.instance.GetComponent<SelectManager>().GetSelectedPiece().GetComponent<Chesspiece>().player)
+                    CreateAttackPlate(x, y);
     }
 
     public void CreateAttackPlate(int x, int y)// 타일의 위치에 이동 가능한 타일을 생성
