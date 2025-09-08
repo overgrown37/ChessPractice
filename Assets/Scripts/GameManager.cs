@@ -14,15 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject Camera; //카메라 회전용
     public bool isInverted = false; //카메라 회전 확인용
 
-    public bool IsGameOver { get; private set; } = false;
-    public void GameOver(Chesspiece deadKing)
-    {
-        if (IsGameOver) return;
-        IsGameOver = true;
-
-        string winner = deadKing.player == "white" ? "Black" : "White";
-        Debug.Log($"[GameOver] Winner = {winner}, Reason = King destroyed"); //일단 로그 띄우기용 -> 향후 ui 작업 필요
-    }
+    
     private void Awake()
     {
         if (instance == null)// GameManager 싱글톤 패턴 구현

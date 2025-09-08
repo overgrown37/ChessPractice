@@ -8,14 +8,7 @@ public class Pawn : Chesspiece
         hp = 1;
         skillCount = 2;
     }
-    private void OnDestroy()
-    {
-        // 씬 언로드 중 파괴되거나 이미 종료 상태면 무시
-        if (!gameObject.scene.isLoaded) return;
-        if (GameManager.instance == null || GameManager.instance.IsGameOver) return;
-
-        GameManager.instance.GameOver(this);
-    }
+    
     public override void Move()
     {
         int x = GetXBoard();
