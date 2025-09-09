@@ -4,6 +4,7 @@ public class Knight : Chesspiece
 {
     private void Start()
     {
+        MaxHp = 3;
         hp = 3;
         skillCount = 2;
     }

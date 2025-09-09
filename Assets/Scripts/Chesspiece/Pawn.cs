@@ -5,7 +5,8 @@ public class Pawn : Chesspiece
 {
     private void Start()
     {
-        hp = 1;
+        MaxHp = 2;
+        hp = 2;
         skillCount = 2;
     }
 

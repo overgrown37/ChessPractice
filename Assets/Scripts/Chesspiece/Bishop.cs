@@ -4,7 +4,8 @@ public class Bishop : Chesspiece
 {   
     private void Start()
     {
-        hp = 3;
+        MaxHp = 4;
+        hp = 4;
         skillCount = 2;
     }
     public override void Move()
