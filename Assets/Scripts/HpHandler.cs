@@ -11,7 +11,6 @@ public class HpHandler : MonoBehaviour
         }
         else {
             GetComponent<Chesspiece>().SetHP(currentHp);
-            //HPUIController.Instance.ShowFromDamage(this.gameObject, 2);
             this.gameObject.GetComponent<Chesspiece>().hpUI.ShowFromDamage(this.gameObject);
         }
     }
@@ -27,5 +26,6 @@ public class HpHandler : MonoBehaviour
     {
         //여기에 죽는 이펙트
         Destroy(this.gameObject);
+        this.gameObject.GetComponent<Chesspiece>().hpUI.ForceHide();
     }
 }

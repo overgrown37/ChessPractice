@@ -59,6 +59,12 @@ public class GameManager : MonoBehaviour
             ChangeView();
             
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            MultiAttackCheck();
+
+        }
     }
     
     public void ChangeView()
@@ -83,6 +89,15 @@ public class GameManager : MonoBehaviour
         // 카메라 상태 반전
         isInverted = !isInverted;
     }
+    public void MultiAttackCheck()
+    {
+        GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
+        foreach( var c in EveryPiece)
+        {
+            c.GetComponent<HpHandler>().Hit(1);
+        }
+    }
+
     public bool IsInverted()
     {
         return isInverted;

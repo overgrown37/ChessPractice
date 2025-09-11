@@ -4,7 +4,8 @@ public class Queen : Chesspiece
 {
     private void Start()
     {
-        hp = 4;
+        MaxHp = 5;
+        hp = 5;
         skillCount = 2;
     }
     public override void Move()
