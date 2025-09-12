@@ -4,7 +4,9 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
 {
     public GameObject attackButton;// 공격 버튼
     public GameObject moveButton;// 이동 버튼
-    public GameObject skillButton;//스킬 버튼
+    public GameObject skill_1Button;//스킬 버튼
+    public GameObject skill_2Button;
+    public GameObject skill_3Button;  
 
     void Start()// 초기화
     {
@@ -16,17 +18,17 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
     {
         attackButton.SetActive(true);
         moveButton.SetActive(true);
-        if (skillCount > 2)
+        /*if (skillCount > 2)
         {
             skillButton.SetActive(true);
-        }
+        }*/
     }
 
     public void DeactiveButton()// 버튼을 비활성화 상태로 변경
     {
         attackButton.SetActive(false);
         moveButton.SetActive(false);
-        skillButton.SetActive(false);
+        /*skillButton.SetActive(false);*/
     }
 
     public void OnAttackButtonClick()// 공격 버튼 클릭 시 호출되는 함수
@@ -41,9 +43,21 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         DeactiveButton();
     }
 
-    public void OnRangedAttackButtonClick()// 스킬 버튼 클릭 시 호출되는 함수
+    public void OnSkill_1ButtonClick()// 스킬 버튼 클릭 시 호출되는 함수
     {
-        GameManager.instance.GetComponent<SelectManager>().RangedAttackSelectedPiece();
+        GameManager.instance.GetComponent<SelectManager>().Skill_1SelectedPiece();
+        DeactiveButton();
+    }
+
+    public void OnSkill_2ButtonClick()// 스킬 버튼 클릭 시 호출되는 함수
+    {
+        GameManager.instance.GetComponent<SelectManager>().Skill_2SelectedPiece();
+        DeactiveButton();
+    }
+
+    public void OnSkill_3ButtonClick()// 스킬 버튼 클릭 시 호출되는 함수
+    {
+        GameManager.instance.GetComponent<SelectManager>().Skill_3SelectedPiece();
         DeactiveButton();
     }
 }

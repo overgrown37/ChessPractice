@@ -105,9 +105,19 @@ public class Chesspiece : MonoBehaviour
     {
         
     }
-    public virtual void RangedAttack()
+    public virtual void Skill_1()
     {
         
+    }
+
+    public virtual void Skill_2()
+    {
+
+    }
+
+    public virtual void Skill_3()
+    {
+
     }
     public virtual int GetDamage(SkillType skill)
     {
