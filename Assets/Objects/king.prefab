@@ -110,6 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpUIPrefab: {fileID: 1035009294986255265, guid: e643749dba1fffe44bf6783d8bd9b7b7, type: 3}
   hpUI: {fileID: 0}
+  skill_Img:
+  - {fileID: 2180322614889046423, guid: 3b6bc7e891fdbf3409622a239d524949, type: 3}
   white: {fileID: -3792998861040722889, guid: f2aaf997b01f41f439a0127ed026d032, type: 3}
   black: {fileID: -641104846605737351, guid: 11010a3a2cc6e8d4e85001e507a12394, type: 3}
   Coords: {x: 0, y: 0, z: 0}

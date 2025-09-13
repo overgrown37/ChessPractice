@@ -28,6 +28,7 @@ public class SelectManager : MonoBehaviour// 선택 관리 스크립트
         selectedPiece = piece;// 새로 선택된 체스말로 설정
         int skillCount = selectedPiece.GetComponent<Chesspiece>().GetSkillCount();// 스킬 개수 가져오기
         selectedPiece.GetComponent<PieceHighlighter>().Select();// 선택된 체스말 하이라이트
+        GameManager.instance.GetComponent<ButtonManager>().setSelectedPiece(selectedPiece);
         GameManager.instance.GetComponent<ButtonManager>().ActiveButton(skillCount);// 버튼 활성화
     }
 

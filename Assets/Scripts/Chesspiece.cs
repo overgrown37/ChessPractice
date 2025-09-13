@@ -12,6 +12,7 @@ public class Chesspiece : MonoBehaviour
     protected int hp;
     protected int MaxHp = 5;//
     protected int skillCount;
+    [SerializeField] private Sprite[] skill_Img; //스킬 이미지 저장
 
     public Sprite white, black;
 
@@ -134,4 +135,11 @@ public class Chesspiece : MonoBehaviour
     {
         hpUI.OnHoverExit();
     }
+
+    public Sprite GetSkill_img(int i) // 스킬 이미지 가지고 오기
+    {
+        return (skill_Img != null && i >= 0 && i < skill_Img.Length) ? skill_Img[i] : null;
+    }
+
+    public Sprite[] GetSkill_img() => skill_Img; // 스킬 이미지 한번에 가져오기(index X)
 }
