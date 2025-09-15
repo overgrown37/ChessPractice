@@ -101,4 +101,14 @@ public class GameManager : MonoBehaviour
     {
         return isInverted;
     }
+    public void SetAllChesspieceCollidersEnabled(bool enabled)
+    {
+        GameObject[] pieces = GameObject.FindGameObjectsWithTag("Chesspiece");
+        foreach (var piece in pieces)
+        {
+            BoxCollider2D col = piece.GetComponent<BoxCollider2D>();
+            if (col != null)
+                col.enabled = enabled;
+        }
+    }
 }

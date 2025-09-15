@@ -41,7 +41,7 @@ public class King : Chesspiece
         setAttackPlate.PointAttackPlate(1, -1);
     }
 
-    public override void RangedAttack()
+    public override void SkillAttack1()
     {
         int damage = GetDamage(SkillType.SpecialSkill1);
         // Pawn의 범위 공격 로직 구현

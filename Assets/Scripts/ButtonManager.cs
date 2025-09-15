@@ -32,18 +32,21 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
     public void OnAttackButtonClick()// 공격 버튼 클릭 시 호출되는 함수
     {
         GameManager.instance.GetComponent<SelectManager>().AttackSelectedPiece();// 선택된 체스말의 공격 함수 호출
+        GameManager.instance.SetAllChesspieceCollidersEnabled(false);
         DeactiveButton();
     }
 
     public void OnMoveButtonClick()// 이동 버튼 클릭 시 호출되는 함수
     {
         GameManager.instance.GetComponent<SelectManager>().MoveSelectedPiece();// 선택된 체스말의 이동 함수 호출
+        GameManager.instance.SetAllChesspieceCollidersEnabled(false);
         DeactiveButton();
     }
 
-    public void OnRangedAttackButtonClick()// 스킬 버튼 클릭 시 호출되는 함수
+    public void OnSkill1ButtonClick()// 스킬 버튼 클릭 시 호출되는 함수
     {
-        GameManager.instance.GetComponent<SelectManager>().RangedAttackSelectedPiece();
+        GameManager.instance.GetComponent<SelectManager>().SkillAttack1SelectedPiece();// 선택된 체스말의 스킬1 함수 호출
+        GameManager.instance.SetAllChesspieceCollidersEnabled(false);
         DeactiveButton();
     }
 }

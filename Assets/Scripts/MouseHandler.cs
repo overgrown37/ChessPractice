@@ -12,6 +12,15 @@ public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 �
         GameObject PieceOnTile = null;//
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);// 마우스 위치를 월드 좌표로 변환
 
+        if (Input.GetMouseButtonDown(1)) // 우클릭
+        {
+            // 선택 해제
+            GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece();
+            // 콜라이더 다시 활성화
+            GameManager.instance.SetAllChesspieceCollidersEnabled(true);
+            // (타일 상태 초기화는 SetEmptySelectedPiece에서 이미 처리됨)
+        }
+
         RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, Vector2.zero);// 마우스 위치에서 Raycast를 사용하여 충돌하는 모든 오브젝트를 감지
 
         foreach (RaycastHit2D hit in hits)

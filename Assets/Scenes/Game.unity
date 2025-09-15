@@ -337,7 +337,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1579459098}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnSkill1ButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1586,6 +1586,7 @@ GameObject:
   - component: {fileID: 1579459100}
   - component: {fileID: 1579459101}
   - component: {fileID: 1579459102}
+  - component: {fileID: 1579459103}
   m_Layer: 0
   m_Name: Controller
   m_TagString: GameController
@@ -1593,14 +1594,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1579459091
-Transform:
+--- !u!224 &1579459091
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579459089}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1608,6 +1608,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1579459092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1654,11 +1659,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d090ed6285d05bb4c978edefd36a4036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnBanner: {fileID: 738377962}
   playerBlack: []
   playerWhite: []
   Camera: {fileID: 519420028}
   isInverted: 0
+  turnBanner: {fileID: 738377962}
 --- !u!114 &1579459096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,6 +1751,33 @@ MonoBehaviour:
   easeIn: 9
   easeOut: 8
   extraLeftMargin: 120
+--- !u!114 &1579459102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579459089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7da6334f770edb43b513337c05353b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SetRangedAttackPlate
+  xBoard: -1
+  yBoard: -1
+  RangedAttackPlatePrefab: {fileID: 8134005108681942047, guid: 24f0e84845f2e5948893dbceb0b916bf, type: 3}
+--- !u!225 &1579459103
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579459089}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1989679215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,21 +1870,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CenterButtons
   spacing: 30
---- !u!114 &1579459102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579459089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7da6334f770edb43b513337c05353b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SetRangedAttackPlate
-  xBoard: -1
-  yBoard: -1
-  RangedAttackPlatePrefab: {fileID: 8134005108681942047, guid: 24f0e84845f2e5948893dbceb0b916bf, type: 3}
 --- !u!1 &2101076075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1993,9 +2010,9 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1579459091}
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1010932142}
   - {fileID: 1282296719}
   - {fileID: 1062020800}
+  - {fileID: 1579459091}

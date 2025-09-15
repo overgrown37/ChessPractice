@@ -31,7 +31,7 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
 
                 GameManager.instance.SetPosition(selectedPiece);     // 3. 새 위치에 배치
                 cp.SetCoords();                                     // 4. 화면상의 위치 갱신
-
+                GameManager.instance.SetAllChesspieceCollidersEnabled(true);
                 GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece(); // 5. 선택된 말 비우기
                 GameManager.instance.GetComponent<PlayerManager>().NextPlayer(); // 6. 다음 플레이어로 전환
             }
@@ -49,14 +49,19 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                     int damage = GameManager.instance.GetComponent<SelectManager>().GetSkillDamageSelectedPiece();// 선택된 체스말이 사용한 스킬을 데미지를 가져온다.
                     targetCp.GetComponent<HpHandler>().Hit(damage); // 체스말 피격 처리
 
+                    GameManager.instance.SetAllChesspieceCollidersEnabled(true);
                     GameManager.instance.GetComponent<SetAttackPlate>().ClearAttackPlates();
                     GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece(); // 선택된 말 비우기
                     GameManager.instance.GetComponent<PlayerManager>().NextPlayer(); // 다음 플레이어로 전환
                 }
+                else
+                {
+                    Debug.Log("공격할 체스말이 없습니다.");
+                }
             }
             else
             {
-                Debug.Log("체스말이 없습니다.");
+                Debug.Log("선택된 체스말이 없습니다.");
             }
         }
         else if (tileCoord.IsRangedAttack())// 타일이 범위 공격 가능한 상태인지 확인
@@ -84,6 +89,7 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                             }
                         }
                     }
+                    GameManager.instance.SetAllChesspieceCollidersEnabled(true);
                     GameManager.instance.GetComponent<SetRangedAttackPlate>().ClearRangedAttackPlates();
                     GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece(); // 선택된 말 비우기
                     GameManager.instance.GetComponent<PlayerManager>().NextPlayer(); // 다음 플레이어로 전환

@@ -59,11 +59,19 @@ public class SelectManager : MonoBehaviour// 선택 관리 스크립트
         }
     }
 
-    public void RangedAttackSelectedPiece()
+    public void SkillAttack1SelectedPiece()
     {
         if (selectedPiece != null)
         {
-            selectedPiece.GetComponent<Chesspiece>().RangedAttack();// 스킬 함수 호출
+            selectedPiece.GetComponent<Chesspiece>().SkillAttack1();// 스킬 함수 호출
+        }
+    }
+
+    public void SkillAttack2SelectedPiece()
+    {
+        if (selectedPiece != null)
+        {
+            selectedPiece.GetComponent<Chesspiece>().SkillAttack2();// 스킬 함수 호출
         }
     }
 

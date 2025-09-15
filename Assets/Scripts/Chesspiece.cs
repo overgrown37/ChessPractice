@@ -119,9 +119,13 @@ public class Chesspiece : MonoBehaviour
     {
         
     }
-    public virtual void RangedAttack()
+    public virtual void SkillAttack1()
     {
         
+    }
+    public virtual void SkillAttack2()
+    {
+
     }
 
     public void ShowUIHover()
