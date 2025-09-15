@@ -69,9 +69,6 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
             GameObject selectedPiece = GameManager.instance.GetComponent<SelectManager>().GetSelectedPiece();
             if (selectedPiece != null)
             {
-                if (tileCoord.GetChesspiece() != null)
-                {
-
                     Chesspiece attackerCp = selectedPiece.GetComponent<Chesspiece>();// 공격하는 체스말의 컴포넌트
                     int damage = GameManager.instance.GetComponent<SelectManager>().GetSkillDamageSelectedPiece();// 선택된 체스말이 사용한 스킬을 데미지를 가져온다.
 
@@ -89,15 +86,16 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                             }
                         }
                     }
+                    if (GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack == true)
+                        GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack = false;
                     GameManager.instance.SetAllChesspieceCollidersEnabled(true);
                     GameManager.instance.GetComponent<SetRangedAttackPlate>().ClearRangedAttackPlates();
                     GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece(); // 선택된 말 비우기
                     GameManager.instance.GetComponent<PlayerManager>().NextPlayer(); // 다음 플레이어로 전환
-                }
             }
             else
             {
-                Debug.Log("체스말이 없습니다.");
+                Debug.Log("선택된 체스말이 없습니다.");
             }
         }
     }

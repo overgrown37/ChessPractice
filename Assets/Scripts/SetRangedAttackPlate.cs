@@ -8,6 +8,7 @@ public class SetRangedAttackPlate : MonoBehaviour
     private int yBoard = -1;
 
     public GameObject RangedAttackPlatePrefab = null;
+    public bool fanAttack = false;
 
     public void GetPosition()// 현재 선택된 체스말의 좌표를 가져옴
     {
@@ -37,6 +38,11 @@ public class SetRangedAttackPlate : MonoBehaviour
         }
     }
 
+    public void FanRangedAttackPlate()
+    {
+        fanAttack = true;
+    }
+
     public void CreateRangedAttackPlate(int x, int y)// 타일의 위치에 이동 가능한 타일을 생성
     {
         // 타일의 월드 좌표를 가져옴
@@ -64,6 +70,81 @@ public class SetRangedAttackPlate : MonoBehaviour
         foreach (GameObject Tile in Tiles)
         {
             Tile.GetComponent<TileCoord>().InitState();
+        }
+    }
+
+    public string GetMouseDirectionFromPiece()
+    {
+        // 1. 마우스의 월드 좌표를 가져옴
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // 2. 마우스 위치에 가장 가까운 타일 좌표 계산 (타일의 크기와 위치에 따라 보정 필요)
+        // 예시: 타일이 (0,0)~(7,7) 정수 좌표에 정렬되어 있다고 가정
+        int mouseX = Mathf.RoundToInt(mouseWorldPos.x + 4); // 보드 위치에 맞게 조정
+        int mouseY = Mathf.RoundToInt(mouseWorldPos.y + 4);
+
+        // 3. 방향 계산
+        int dx = mouseX - xBoard;
+        int dy = mouseY - yBoard;
+
+        if (Mathf.Abs(dx) > Mathf.Abs(dy))
+        {
+            if (dx > 0)
+                return "right";
+            else if (dx < 0)
+                return "left";
+        }
+        else if (Mathf.Abs(dy) > 0)
+        {
+            if (dy > 0)
+                return "up";
+            else if (dy < 0)
+                return "down";
+        }
+        return "center"; // 같은 타일 위에 있을 때
+    }
+
+    private void Update()
+    {
+        if (fanAttack)
+        {
+            ClearRangedAttackPlates(); // 기존의 공격 타일 제거
+            GetPosition(); // 현재 선택된 체스말의 좌표를 가져옴
+            string direction = GetMouseDirectionFromPiece(); // 마우스 방향을 가져옴
+            // 방향에 따라 공격 타일 생성
+            switch (direction)
+            {
+                case "up":
+                    PointRangedAttackPlate(0, 1);
+                    PointRangedAttackPlate(1, 2);
+                    PointRangedAttackPlate(-1, 2);
+                    PointRangedAttackPlate(0, 2);
+                    break;
+                case "down":
+                    PointRangedAttackPlate(0, -1);
+                    PointRangedAttackPlate(1, -2);
+                    PointRangedAttackPlate(-1, -2);
+                    PointRangedAttackPlate(0, -2);
+                    break;
+                case "left":
+                    PointRangedAttackPlate(-1, 0);
+                    PointRangedAttackPlate(-2, 1);
+                    PointRangedAttackPlate(-2, -1);
+                    PointRangedAttackPlate(-2, 0);
+                    break;
+                case "right":
+                    PointRangedAttackPlate(1, 0);
+                    PointRangedAttackPlate(2, 1);
+                    PointRangedAttackPlate(2, -1);
+                    PointRangedAttackPlate(2, 0);
+                    break;
+                case "center":
+                    PointRangedAttackPlate(0, 1);
+                    PointRangedAttackPlate(1, 2);
+                    PointRangedAttackPlate(-1, 2);
+                    PointRangedAttackPlate(0, 2);
+                    break;
+            }
         }
     }
 }
