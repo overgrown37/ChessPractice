@@ -2,16 +2,18 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.SceneManagement;
-
+using DG.Tweening;
+using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
-
+    
     public GameObject[,] positions = new GameObject[8, 8];// 보드의 타일들을 담을 배열
     public GameObject[] playerBlack;// 흑색 플레이어의 체스말들
     public GameObject[] playerWhite;// 백색 플레이어의 체스말들
     public GameObject Camera; //카메라 회전용
     public bool isInverted = false; //카메라 회전 확인용
+    [SerializeField] private Next_turn_UI turnBanner;
 
     private void Awake()
     {
@@ -57,23 +59,41 @@ public class GameManager : MonoBehaviour
             ChangeView();
             
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            MultiAttackCheck();
+
+        }
     }
+    
     public void ChangeView()
     {
-        Camera.transform.Rotate(0, 0, 180);
-        GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
-        foreach(var c in EveryPiece)
-        {
-            c.transform.Rotate(0, 0, 180);
-        }
+        StartCoroutine(ChangeViewRoutine());
+    }
 
-        if (isInverted)
+    private IEnumerator ChangeViewRoutine()
+    {
+        if (turnBanner != null)
+            yield return StartCoroutine(turnBanner.ShowAndHide());
+
+        // 2) 배너가 내려간 뒤 회전 시작
+        yield return new WaitForSeconds(0.1f); // (선택) 아주 짧은 텀
+
+        Camera.transform.DORotate(new Vector3(0, 0, 180), 1f, RotateMode.WorldAxisAdd);
+
+        GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
+        foreach (var piece in EveryPiece)
+            piece.transform.DORotate(new Vector3(0, 0, 180), 1f, RotateMode.WorldAxisAdd);
+
+        isInverted = !isInverted;
+    }
+    public void MultiAttackCheck()
+    {
+        GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
+        foreach( var c in EveryPiece)
         {
-            isInverted = false;
-        }
-        else
-        {
-            isInverted = true;
+            c.GetComponent<HpHandler>().Hit(1);
         }
     }
 
