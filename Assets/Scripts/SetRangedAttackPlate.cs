@@ -37,47 +37,6 @@ public class SetRangedAttackPlate : MonoBehaviour
         }
     }
 
-    public void FanRangedAttackPlate(int range, int directionX, int directionY)
-    {
-        // directionX, directionY는 부채꼴의 중심 방향(예: (1,0) → 오른쪽, (0,1) → 위쪽)
-        // 예시: (1,0) → 오른쪽, (1,1) → 오른쪽 위 대각선 등
-
-        // 중심 방향이 없으면 리턴
-        if (directionX == 0 && directionY == 0)
-            return;
-
-        // 중심 방향을 기준으로 -45도~+45도(총 90도) 범위의 방향만 포함
-        for (int dist = 1; dist <= range; dist++)
-        {
-            for (int dx = -dist; dx <= dist; dx++)
-            {
-                for (int dy = -dist; dy <= dist; dy++)
-                {
-                    // 현재 위치에서의 상대 좌표
-                    int tx = xBoard + dx;
-                    int ty = yBoard + dy;
-
-                    // 원점에서의 거리 체크 (정사각형 범위 내에서만)
-                    if (Mathf.Abs(dx) + Mathf.Abs(dy) != dist)
-                        continue;
-
-                    // 중심 방향과의 각도 체크 (부채꼴 범위 내만)
-                    Vector2 dir = new Vector2(directionX, directionY).normalized;
-                    Vector2 toTile = new Vector2(dx, dy).normalized;
-                    float angle = Vector2.Angle(dir, toTile);
-                    if (angle > 45f) // 90도 부채꼴
-                        continue;
-
-                    // 보드 내에 있으면 생성
-                    if (GameManager.instance.PositionOnBoard(tx, ty))
-                    {
-                        CreateRangedAttackPlate(tx, ty);
-                    }
-                }
-            }
-        }
-    }
-
     public void CreateRangedAttackPlate(int x, int y)// 타일의 위치에 이동 가능한 타일을 생성
     {
         // 타일의 월드 좌표를 가져옴
