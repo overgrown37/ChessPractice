@@ -77,7 +77,7 @@ public class SelectManager : MonoBehaviour// 선택 관리 스크립트
     {
         GameManager.instance.GetComponent<SetMovePlate>().ClearMovePlates(); // 이동 가능한 타일 제거
         GameManager.instance.GetComponent<SetAttackPlate>().ClearAttackPlates(); // 공격 가능한 타일 제거
-        //범위 공격 타일 제거
+        GameManager.instance.GetComponent<SetRangedAttackPlate>().ClearRangedAttackPlates();//범위 공격 타일 제거
     }
 
 }
