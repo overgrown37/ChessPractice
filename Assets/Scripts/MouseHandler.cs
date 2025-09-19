@@ -21,6 +21,7 @@ public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 �
             // (타일 상태 초기화는 SetEmptySelectedPiece에서 이미 처리됨)
             GameManager.instance.GetComponent<ButtonManager>().DeactiveButton();
             GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack = false;
+            GameManager.instance.GetComponent<SetRangedAttackPlate>().roundAttack = false;
         }
 
         RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, Vector2.zero);// 마우스 위치에서 Raycast를 사용하여 충돌하는 모든 오브젝트를 감지

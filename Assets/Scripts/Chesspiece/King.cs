@@ -44,8 +44,9 @@ public class King : Chesspiece
     public override void SkillAttack1()
     {
         int damage = GetDamage(SkillType.SpecialSkill1);
-        // Pawn의 범위 공격 로직 구현
-        Debug.Log("King Ranged Attack");
+        GameManager.instance.GetComponent<SelectManager>().SetSkillDamageSelectedPiece(damage);
+        SetRangedAttackPlate setRangedAttackPlate = GameManager.instance.GetComponent<SetRangedAttackPlate>();
+        setRangedAttackPlate.RoundAttackPlate(1);
     }
 
     public override int GetDamage(SkillType skill)

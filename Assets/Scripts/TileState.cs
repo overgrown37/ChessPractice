@@ -88,6 +88,8 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                     }
                     if (GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack == true)
                         GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack = false;
+                    if (GameManager.instance.GetComponent<SetRangedAttackPlate>().roundAttack == true)
+                        GameManager.instance.GetComponent<SetRangedAttackPlate>().roundAttack = false;
                     GameManager.instance.SetAllChesspieceCollidersEnabled(true);
                     GameManager.instance.GetComponent<SetRangedAttackPlate>().ClearRangedAttackPlates();
                     GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece(); // 선택된 말 비우기
