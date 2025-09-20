@@ -25,12 +25,16 @@ public class Rook : Chesspiece
         GameManager.instance.GetComponent<SelectManager>().SetSkillDamageSelectedPiece(damage);
         int x = GetXBoard();
         int y = GetYBoard();
-        SetAttackPlate setAttackPlate = GameManager.instance.GetComponent<SetAttackPlate>();
-        setAttackPlate.GetPosition();
-        setAttackPlate.LineAttackPlate(1, 0); // 오른쪽
-        setAttackPlate.LineAttackPlate(-1, 0); // 왼쪽
-        setAttackPlate.LineAttackPlate(0, 1); // 위쪽
-        setAttackPlate.LineAttackPlate(0, -1); // 아래쪽
+        SetRangedAttackPlate setRangedAttackPlate = GameManager.instance.GetComponent<SetRangedAttackPlate>();
+        setRangedAttackPlate.GetPosition();
+        setRangedAttackPlate.PointRangedAttackPlate(1, 0);
+        setRangedAttackPlate.PointRangedAttackPlate(1, 1);
+        setRangedAttackPlate.PointRangedAttackPlate(1, -1);
+        setRangedAttackPlate.PointRangedAttackPlate(0, 1);
+        setRangedAttackPlate.PointRangedAttackPlate(0, -1);
+        setRangedAttackPlate.PointRangedAttackPlate(-1, 0);
+        setRangedAttackPlate.PointRangedAttackPlate(-1, 1);
+        setRangedAttackPlate.PointRangedAttackPlate(-1, -1);
     }
     public override int GetDamage(SkillType skill)
     {

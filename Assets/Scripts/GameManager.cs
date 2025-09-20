@@ -7,14 +7,14 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
-
+    
     public GameObject[,] positions = new GameObject[8, 8];// 보드의 타일들을 담을 배열
     public GameObject[] playerBlack;// 흑색 플레이어의 체스말들
     public GameObject[] playerWhite;// 백색 플레이어의 체스말들
     public GameObject Camera; //카메라 회전용
     public bool isInverted = false; //카메라 회전 확인용
+    [SerializeField] private Next_turn_UI turnBanner;
 
-    
     private void Awake()
     {
         if (instance == null)// GameManager 싱글톤 패턴 구현
@@ -74,19 +74,18 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ChangeViewRoutine()
     {
-        yield return new WaitForSeconds(1f); // 회전 시작 전 딜레이
+        if (turnBanner != null)
+            yield return StartCoroutine(turnBanner.ShowAndHide());
 
-        // 카메라 회전 (DOTween)
+        // 2) 배너가 내려간 뒤 회전 시작
+        yield return new WaitForSeconds(0.1f); // (선택) 아주 짧은 텀
+
         Camera.transform.DORotate(new Vector3(0, 0, 180), 1f, RotateMode.WorldAxisAdd);
 
-        // 체스말 회전 (DOTween)
         GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
         foreach (var piece in EveryPiece)
-        {
             piece.transform.DORotate(new Vector3(0, 0, 180), 1f, RotateMode.WorldAxisAdd);
-        }
 
-        // 카메라 상태 반전
         isInverted = !isInverted;
     }
     public void MultiAttackCheck()
@@ -101,5 +100,15 @@ public class GameManager : MonoBehaviour
     public bool IsInverted()
     {
         return isInverted;
+    }
+    public void SetAllChesspieceCollidersEnabled(bool enabled)
+    {
+        GameObject[] pieces = GameObject.FindGameObjectsWithTag("Chesspiece");
+        foreach (var piece in pieces)
+        {
+            BoxCollider2D col = piece.GetComponent<BoxCollider2D>();
+            if (col != null)
+                col.enabled = enabled;
+        }
     }
 }

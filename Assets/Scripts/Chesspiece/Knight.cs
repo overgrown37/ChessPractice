@@ -28,19 +28,10 @@ public class Knight : Chesspiece
     public override void Attack()
     {
         int damage = GetDamage(SkillType.BasicAttack);
-        GameManager.instance.GetComponent<SelectManager>().SetSkillDamageSelectedPiece(damage);
-        int x = GetXBoard();
-        int y = GetYBoard();
-        SetAttackPlate setAttackPlate = GameManager.instance.GetComponent<SetAttackPlate>();
+        SetRangedAttackPlate setAttackPlate = GameManager.instance.GetComponent<SetRangedAttackPlate>();
         setAttackPlate.GetPosition();
-        setAttackPlate.PointAttackPlate(2, 1); // 오른쪽 위
-        setAttackPlate.PointAttackPlate(2, -1); // 오른쪽 아래
-        setAttackPlate.PointAttackPlate(-2, 1); // 왼쪽 위
-        setAttackPlate.PointAttackPlate(-2, -1); // 왼쪽 아래
-        setAttackPlate.PointAttackPlate(1, 2); // 위쪽 오른쪽
-        setAttackPlate.PointAttackPlate(1, -2); // 아래쪽 오른쪽
-        setAttackPlate.PointAttackPlate(-1, 2); // 위쪽 왼쪽
-        setAttackPlate.PointAttackPlate(-1, -2); // 아래쪽 왼쪽
+        setAttackPlate.FanRangedAttackPlate();
+        GameManager.instance.GetComponent<SelectManager>().SetSkillDamageSelectedPiece(damage);
     }
 
     public override int GetDamage(SkillType skill)

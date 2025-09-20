@@ -60,27 +60,19 @@ public class SelectManager : MonoBehaviour// 선택 관리 스크립트
         }
     }
 
-    public void Skill_1SelectedPiece()
+    public void SkillAttack1SelectedPiece()
     {
         if (selectedPiece != null)
         {
-            selectedPiece.GetComponent<Chesspiece>().Skill_1();// 스킬 함수 호출
+            selectedPiece.GetComponent<Chesspiece>().SkillAttack1();// 스킬 함수 호출
         }
     }
 
-    public void Skill_2SelectedPiece()
+    public void SkillAttack2SelectedPiece()
     {
         if (selectedPiece != null)
         {
-            selectedPiece.GetComponent<Chesspiece>().Skill_2();
-        }
-    }
-
-    public void Skill_3SelectedPiece()
-    {
-        if (selectedPiece != null)
-        {
-            selectedPiece.GetComponent<Chesspiece>().Skill_3();
+            selectedPiece.GetComponent<Chesspiece>().SkillAttack2();// 스킬 함수 호출
         }
     }
 
@@ -98,7 +90,7 @@ public class SelectManager : MonoBehaviour// 선택 관리 스크립트
     {
         GameManager.instance.GetComponent<SetMovePlate>().ClearMovePlates(); // 이동 가능한 타일 제거
         GameManager.instance.GetComponent<SetAttackPlate>().ClearAttackPlates(); // 공격 가능한 타일 제거
-        //범위 공격 타일 제거
+        GameManager.instance.GetComponent<SetRangedAttackPlate>().ClearRangedAttackPlates();//범위 공격 타일 제거
     }
 
 }

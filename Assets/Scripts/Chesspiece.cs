@@ -14,6 +14,14 @@ public class Chesspiece : MonoBehaviour
     protected int skillCount;
     [SerializeField] private Sprite[] skill_Img; //스킬 이미지 저장
 
+    public enum SkillType
+    {
+        BasicAttack,
+        SpecialSkill1,
+        SpecialSkill2,
+        // 필요에 따라 추가
+    }
+
     public Sprite white, black;
 
     public Vector3 Coords = new Vector3();//체스말의 화면상의 좌표(UI 효과를 위해 따로 추가)
@@ -96,6 +104,12 @@ public class Chesspiece : MonoBehaviour
         return skillCount;
     }
 
+    public virtual int GetDamage(SkillType skill)
+    {
+        // 기본값: 일반 공격
+        return skill == SkillType.BasicAttack ? 1 : 2;
+    }
+
     public virtual void Move()
     {
         // 기본 이동 메서드, 각 체스말 클래스에서 오버라이드하여 구현
@@ -106,24 +120,13 @@ public class Chesspiece : MonoBehaviour
     {
         
     }
-    public virtual void Skill_1()
+    public virtual void SkillAttack1()
     {
         
     }
-
-    public virtual void Skill_2()
+    public virtual void SkillAttack2()
     {
 
-    }
-
-    public virtual void Skill_3()
-    {
-
-    }
-    public virtual int GetDamage(SkillType skill)
-    {
-        // 기본값: 일반 공격
-        return skill == SkillType.BasicAttack ? 1 : 2;
     }
 
     public void ShowUIHover()

@@ -18,9 +18,9 @@ public class SetAttackPlate : MonoBehaviour
 
     public void PointAttackPlate(int x, int y)// 해당 좌표에 공격 가능한 타일을 표시
     {
-        if (GameManager.instance.PositionOnBoard(xBoard + x, yBoard + y))//MovePlate와 다르게 공격은 적이 있든 없든 표시
+        if (GameManager.instance.PositionOnBoard(xBoard + x, yBoard + y))
         {
-            CreateAttackPlate(xBoard + x, yBoard + y);
+                CreateAttackPlate(xBoard + x, yBoard + y);
         }
     }
 
@@ -37,7 +37,7 @@ public class SetAttackPlate : MonoBehaviour
             y += yIncrement;
         }
         if(GameManager.instance.PositionOnBoard(x, y))
-            CreateAttackPlate(x, y);
+                CreateAttackPlate(x, y);
     }
 
     public void CreateAttackPlate(int x, int y)// 타일의 위치에 이동 가능한 타일을 생성
