@@ -27,6 +27,29 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+    public bool IsGameOver { get; private set; } = false;
+    public void GameOver(Chesspiece deadKing)
+    {
+        if (IsGameOver) return;
+        IsGameOver = true;
+
+        string winner = (deadKing.player == "white") ? "Black" : "White";
+
+        // 👉 UI 컨트롤러가 비활성화여도 찾아서 켜서 보여줌
+        var ui = FindObjectOfType<GameOverController>(true);
+        if (ui != null) ui.Show(winner, "King destroyed");
+    }
+    public void ClearGameOverFlag()
+    {
+        IsGameOver = false;
+        var gameOverController = FindObjectOfType<GameOverController>();
+        if (gameOverController != null)
+            gameOverController.SetGameOver(false);
+    }
 
     public void SetPosition(GameObject obj)// 타일에 체스말을 배치
     {
