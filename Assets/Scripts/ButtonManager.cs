@@ -26,6 +26,7 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
     {
         // 버튼을 비활성화 상태로 시작
         DeactiveButton();
+        DeactiveBackButton();
     }
 
     void Awake()
@@ -133,6 +134,7 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         GameManager.instance.GetComponent<SelectManager>().AttackSelectedPiece();// 선택된 체스말의 공격 함수 호출
         GameManager.instance.SetAllChesspieceCollidersEnabled(false);
         DeactiveButton();
+        ActiveBackButton();
     }
 
     public void OnMoveButtonClick()// 이동 버튼 클릭 시 호출되는 함수
@@ -140,6 +142,7 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         GameManager.instance.GetComponent<SelectManager>().MoveSelectedPiece();// 선택된 체스말의 이동 함수 호출
         GameManager.instance.SetAllChesspieceCollidersEnabled(false);
         DeactiveButton();
+        ActiveBackButton();
     }
 
     public void OnSkill1ButtonClick()// 스킬 버튼 클릭 시 호출되는 함수
@@ -147,12 +150,21 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         GameManager.instance.GetComponent<SelectManager>().SkillAttack1SelectedPiece();// 선택된 체스말의 스킬1 함수 호출
         GameManager.instance.SetAllChesspieceCollidersEnabled(false);
         DeactiveButton();
+        ActiveBackButton();
     }
 
     public void OnBackButtonClick() // 뒤로가기 버튼 클릭 시 호출되는 함수
     {
-        GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece();// 선택된 체스말을 비우기
+        GameManager.instance.GetComponent<SelectManager>().DeleteTileState();// 타일 상태 정리
         GameManager.instance.SetAllChesspieceCollidersEnabled(true);
+
+        if(currentPiece != null) // 만약 선택된 체스말이 있다면
+        {
+            int skillCount = currentPiece.GetComponent<Chesspiece>().GetSkillCount();
+            ActiveButton(skillCount, currentPiece); // 버튼 다시 활성화
+        }
+
         DeactiveBackButton();
     }
+
 }
