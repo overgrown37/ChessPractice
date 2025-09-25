@@ -12,6 +12,8 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
     public GameObject attackButton;// 공격 버튼
     public GameObject moveButton;// 이동 버튼
 
+    public GameObject backButton;// 뒤로가기 버튼
+
     public RectTransform actionBar;// 버튼을 넣어서 정렬시키는 곳
 
     public List<GameObject> skillButtons = new List<GameObject>();// 스킬 버튼 리스트(캔버스에서 가져와서 리스트에 저장)
@@ -45,12 +47,6 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         DeactiveButton();
     }
 
-    /*public void ActiveButton(int skillCount)// 버튼을 활성화 상태로 변경
-    {
-        attackButton.SetActive(true);
-        moveButton.SetActive(true);
-    }*/
-
     public void DeactiveButton()// 버튼을 비활성화 상태로 변경
     {
         if (attackButton) attackButton.SetActive(false);
@@ -59,9 +55,19 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         if (actionBar) actionBar.gameObject.SetActive(false);
     }
 
+    public void DeactiveBackButton()// 뒤로가기 버튼 클릭 시 호출되는 함수
+    {
+        if(backButton) backButton.SetActive(false);
+    }
+
     public void ActiveButton(int skillCount) // 오버로드(함수 인자 전달 오류 개선)
     {
         ActiveButton(skillCount, currentPiece);
+    }
+
+    public void ActiveBackButton()// 뒤로가기 버튼 클릭 시 호출되는 함수
+    {
+        if (backButton) backButton.SetActive(true);
     }
 
     public void ActiveButton(int skillCount, GameObject piece)
@@ -141,5 +147,12 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         GameManager.instance.GetComponent<SelectManager>().SkillAttack1SelectedPiece();// 선택된 체스말의 스킬1 함수 호출
         GameManager.instance.SetAllChesspieceCollidersEnabled(false);
         DeactiveButton();
+    }
+
+    public void OnBackButtonClick() // 뒤로가기 버튼 클릭 시 호출되는 함수
+    {
+        GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece();// 선택된 체스말을 비우기
+        GameManager.instance.SetAllChesspieceCollidersEnabled(true);
+        DeactiveBackButton();
     }
 }
