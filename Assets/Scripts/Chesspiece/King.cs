@@ -8,6 +8,14 @@ public class King : Chesspiece
         hp = 5;
         skillCount = 3;
     }
+    private void OnDestroy()
+    {
+        
+        if (!gameObject.scene.isLoaded) return;
+        if (GameManager.instance == null || GameManager.instance.IsGameOver) return;
+
+        GameManager.instance.GameOver(this);
+    }
     public override void Move()
     {
         int x = GetXBoard();
