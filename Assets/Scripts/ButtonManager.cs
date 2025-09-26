@@ -158,6 +158,8 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         GameManager.instance.GetComponent<SelectManager>().DeleteTileState();// 타일 상태 정리
         GameManager.instance.SetAllChesspieceCollidersEnabled(true);
 
+        GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack = false;
+        GameManager.instance.GetComponent<SetRangedAttackPlate>().roundAttack = false;
         GameManager.instance.GetComponent<SetRangedAttackPlate>().ClearRangedAttackPlates(); // 스킬 공격 타일 제거
 
         if (currentPiece != null) // 만약 선택된 체스말이 있다면
