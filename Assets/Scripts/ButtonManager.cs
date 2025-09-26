@@ -158,7 +158,9 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         GameManager.instance.GetComponent<SelectManager>().DeleteTileState();// 타일 상태 정리
         GameManager.instance.SetAllChesspieceCollidersEnabled(true);
 
-        if(currentPiece != null) // 만약 선택된 체스말이 있다면
+        GameManager.instance.GetComponent<SetRangedAttackPlate>().ClearRangedAttackPlates(); // 스킬 공격 타일 제거
+
+        if (currentPiece != null) // 만약 선택된 체스말이 있다면
         {
             int skillCount = currentPiece.GetComponent<Chesspiece>().GetSkillCount();
             ActiveButton(skillCount, currentPiece); // 버튼 다시 활성화
