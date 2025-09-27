@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
         string winner = (deadKing.player == "white") ? "Black" : "White";
 
-        // 👉 UI 컨트롤러가 비활성화여도 찾아서 켜서 보여줌
+        // UI 컨트롤러가 비활성화여도 찾아서 켜서 보여줌
         var ui = FindObjectOfType<GameOverController>(true);
         if (ui != null) ui.Show(winner, "King destroyed");
     }
