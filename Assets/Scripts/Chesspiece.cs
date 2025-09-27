@@ -145,4 +145,28 @@ public class Chesspiece : MonoBehaviour
     }
 
     public Sprite[] GetSkill_img() => skill_Img; // 스킬 이미지 한번에 가져오기(index X)
+    private void OnMouseEnter()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
+        if (hit.collider != null)
+        {
+            TileState tileState = hit.collider.GetComponent<TileState>();
+            if (tileState != null)
+            {
+                tileState.ForceShowGhost();
+            }
+        }
+    }
+    private void OnMouseExit()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
+        if (hit.collider != null)
+        {
+            TileState tileState = hit.collider.GetComponent<TileState>();
+            if (tileState != null)
+            {
+                tileState.ForceHideGhost();
+            }
+        }
+    }
 }

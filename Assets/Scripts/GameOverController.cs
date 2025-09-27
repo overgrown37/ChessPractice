@@ -54,7 +54,7 @@ public class GameOverController : MonoBehaviour
     public void OnClickRestart()
     {
         // ±âÁ¸ ½Ì±ÛÅæ ¿ÀºêÁ§Æ® ÆÄ±«
-        var gm = FindObjectOfType<GameManager>();
+        var gm = FindFirstObjectByType<GameManager>();
         if (gm != null)
             gm.DestroySelf();
 
