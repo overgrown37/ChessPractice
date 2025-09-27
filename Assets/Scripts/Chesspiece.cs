@@ -10,8 +10,13 @@ public class Chesspiece : MonoBehaviour
     private int yBoard = 0;
 
     protected int hp;
-    protected int MaxHp = 5;//
+    protected int MaxHp = 5;
     protected int skillCount;
+
+    protected int[] remainedSkills = new int[3]{ 1, 1, 1 }; // 남은 스킬 횟수
+    protected int[] skillCooltime = new int[3]{ 1, 1, 1 }; // 스킬 쿨타임
+    protected bool[] is_Cooltime = new bool[3] { false, false, false }; // 스킬 사용 시 쿨타임 중인지 아닌지 나타냄
+
     [SerializeField] private Sprite[] skill_Img; //스킬 이미지 저장
 
     public enum SkillType
@@ -102,6 +107,17 @@ public class Chesspiece : MonoBehaviour
     public int GetSkillCount()
     {
         return skillCount;
+    }
+
+    public int[] GetRemainedSkills() //배열 반환
+    {
+        return remainedSkills; 
+    }
+
+    public int GetRemainedSkill(int index) //특정 남은 스킬 개수 반환
+    {
+        return (remainedSkills != null && index >= 0 && index < remainedSkills.Length)
+               ? remainedSkills[index] : 0;
     }
 
     public virtual int GetDamage(SkillType skill)

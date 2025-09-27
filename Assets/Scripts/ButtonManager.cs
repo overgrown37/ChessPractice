@@ -1,8 +1,9 @@
 using NUnit.Framework;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스말의 스킬 갯수에 따라 버튼 수와 배치를 다르게 하기)
 {
@@ -48,6 +49,8 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         DeactiveButton();
     }
 
+
+
     public void DeactiveButton()// 버튼을 비활성화 상태로 변경
     {
         if (attackButton) attackButton.SetActive(false);
@@ -71,22 +74,37 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         if (backButton) backButton.SetActive(true);
     }
 
-    public void ActiveButton(int skillCount, GameObject piece)
+    public void ActiveButton(int skillCount, GameObject piece) // 진짜 activebutton 함수
     {
         if (!actionBar) return;
 
-        // 1) 고정 버튼 ON
+        // 고정 버튼 ON
         if (attackButton) attackButton.SetActive(true);
         if (moveButton) moveButton.SetActive(true);
 
-        // 2) 필요한 스킬 개수 계산(최소 0)
+        // 필요한 스킬 개수 계산(최소 0)
         int needSkills = Mathf.Max(0, skillCount - 2);
 
-        // 3) 스킬 버튼 토글
+        // 현재 piece의 남은 스킬 개수 
+        int[] remainedSkills = piece.GetComponent<Chesspiece>().GetRemainedSkills();
+
+        // 스킬 버튼 토글
+        int activeSkillButtonCount = 0;
         for (int i = 0; i < skillButtons.Count; i++)
         {
-            bool on = i < needSkills;
-            if (skillButtons[i]) skillButtons[i].SetActive(on);
+            bool shouldShow = false;
+
+            if (i < needSkills) // 필요한 스킬 개수 범위 내
+            {
+                // 스킬 개수 검사(remainedSkill 배열 범위 내이고 값이 0보다 클 때만 활성화)
+                if (remainedSkills != null && i < remainedSkills.Length && remainedSkills[i] > 0)
+                {
+                    shouldShow = true;
+                    activeSkillButtonCount++;
+                }
+            }
+
+            if (skillButtons[i]) skillButtons[i].SetActive(shouldShow);
         }
 
         if (needSkills > skillButtons.Count)
@@ -95,39 +113,59 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
                              $"{skillButtons.Count}개만 있습니다. (ActionBar에 스킬 버튼 추가하면 자동 반영됨)");
         }
 
-        ApplySkill_Icons(piece, needSkills);
+        ApplySkill_Icons(piece, activeSkillButtonCount, remainedSkills);
 
-        // 4) 바 표시 + 중앙 정렬 새로고침
+        // 바 표시 + 중앙 정렬 새로고침
         actionBar.gameObject.SetActive(true);
         if (center) center.AlignChildren();
     }
 
-    private void ApplySkill_Icons(GameObject piece, int needSkills)
+    //스킬버튼에 아이콘 적용
+    private void ApplySkill_Icons(GameObject piece, int activeSkillCount, int[] remainedSkills)
     {
-        for (int i = 0; i < needSkills; i++)
+        int iconIndex = 0; //실제 아이콘을 적용할 인덱스
+
+        for (int i = 0; i < skillButtons.Count; i++)
         {
             var btn = skillButtons[i];
-            if (!btn) continue;
+    
+            if (!btn) continue; //버튼이 null이면 건너뛰기
 
-            // Icon 이미지 찾기 (자식 이름 기준)
-            Image icon = null;
-            var t = btn.transform.Find(iconChildname);
-            if (t) icon = t.GetComponent<Image>();
-            if (!icon) icon = btn.GetComponentInChildren<Image>(true); // 마지막 보정
+            // 해당 스킬이 존재하고 사용 가능한지 확인
+            if (remainedSkills != null && i < remainedSkills.Length && remainedSkills[i] > 0)
+            {
+                // Icon 이미지 찾기
+                Image icon = null;
+                var t = btn.transform.Find(iconChildname);
+                if (t) icon = t.GetComponent<Image>();
+                if (!icon) icon = btn.GetComponentInChildren<Image>(true);
 
-            if (!icon) continue;
+                if (icon != null)
+                {
+                    var sp = piece.GetComponent<Chesspiece>().GetSkill_img(i);
+                    icon.sprite = sp;
+                    icon.preserveAspect = true;
+                    var rt = icon.rectTransform;
+                    rt.sizeDelta = iconSize;
+                }
 
-            // 말에서 i번째 스킬 아이콘 가져오기 (없으면 기본 아이콘)
-            var sp = piece.GetComponent<Chesspiece>().GetSkill_img(i);
-            icon.sprite = sp;
+                // 스킬 남은 개수 텍스트 설정
+                TextMeshProUGUI skillCountText = btn.GetComponentInChildren<TextMeshProUGUI>();
 
-            // 픽셀아트 32×32
-            icon.preserveAspect = true;
-            var rt = icon.rectTransform;
-            rt.sizeDelta = iconSize;
+                if (skillCountText != null)
+                {
+                    skillCountText.text = remainedSkills[i].ToString();
+                }
+                else
+                {
+                    Debug.LogWarning($"[ButtonManager] {btn.name} 버튼에서 Text 컴포넌트를 찾을 수 없습니다!");
+                }
+
+                iconIndex++;
+            }
         }
-
     }
+
 
     public void OnAttackButtonClick()// 공격 버튼 클릭 시 호출되는 함수
     {
