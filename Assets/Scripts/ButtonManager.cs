@@ -93,6 +93,7 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
         for (int i = 0; i < skillButtons.Count; i++)
         {
             bool shouldShow = false;
+            bool isInCooltime = piece.GetComponent<Chesspiece>().IsInCoolTime(i);
 
             if (i < needSkills) // 필요한 스킬 개수 범위 내
             {
@@ -104,13 +105,20 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
                 }
             }
 
-            if (skillButtons[i]) skillButtons[i].SetActive(shouldShow);
-        }
+            if (skillButtons[i])
+            {
+                skillButtons[i].SetActive(shouldShow);
 
-        if (needSkills > skillButtons.Count)
-        {
-            Debug.LogWarning($"[ButtonManager] 스킬 {needSkills}개가 필요하지만 " +
-                             $"{skillButtons.Count}개만 있습니다. (ActionBar에 스킬 버튼 추가하면 자동 반영됨)");
+                // 쿨타임 처리 ( 버튼이 활성화되어 있을 때만 )
+                if (shouldShow)
+                {
+                    Button btnComponent = skillButtons[i].GetComponent<Button>();
+                    if (btnComponent != null)
+                    {
+                        btnComponent.interactable = !isInCooltime; // 쿨타임 중이면 상호작용 불가
+                    }
+                }
+            }
         }
 
         ApplySkill_Icons(piece, activeSkillButtonCount, remainedSkills);
@@ -149,12 +157,34 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
                     rt.sizeDelta = iconSize;
                 }
 
-                // 스킬 남은 개수 텍스트 설정
+                // 쿨타임 확인 및 텍스트 처리
+                bool isInCooltime = piece.GetComponent<Chesspiece>().IsInCoolTime(i);
+                int coolTimeRemaining = piece.GetComponent<Chesspiece>().GetCoolTimeRemaining(i);
+
+                Debug.Log($"=== 버튼 {i} 텍스트 처리 ===");
+                Debug.Log($"isInCooltime: {isInCooltime}");
+                Debug.Log($"coolTimeRemaining: {coolTimeRemaining}");
+                Debug.Log($"remainedSkills[{i}]: {remainedSkills[i]}");
+
+                // 스킬 남은 개수 또는 쿨타임 텍스트 설정
                 TextMeshProUGUI skillCountText = btn.GetComponentInChildren<TextMeshProUGUI>();
+                Debug.Log($"skillCountText 찾기 결과: {skillCountText?.name}");
 
                 if (skillCountText != null)
                 {
-                    skillCountText.text = remainedSkills[i].ToString();
+                    if (isInCooltime && coolTimeRemaining > 0)
+                    {
+                        // 쿨타임 중이면 남은 턴 수 표시
+                        skillCountText.text = coolTimeRemaining.ToString();
+                        skillCountText.color = Color.red; // 쿨타임 중일 때 빨간색
+                        Debug.Log($"쿨타임 텍스트 설정: {coolTimeRemaining}");
+                    }
+                    else
+                    {
+                        // 평상시엔 남은 스킬 횟수 표시
+                        skillCountText.text = remainedSkills[i].ToString();
+                        skillCountText.color = Color.white; // 기본 색상
+                    }
                 }
                 else
                 {
@@ -164,6 +194,15 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
                 iconIndex++;
             }
         }
+    }
+
+    public bool IsInCoolTime(int i) // 스킬 쿨타임 확인 함수
+    {
+        if (currentPiece != null)
+        {
+            return currentPiece.GetComponent<Chesspiece>().IsInCoolTime(i); // 선택된 체스말의 쿨타임 확인 함수 호출
+        }
+        return false;
     }
 
 

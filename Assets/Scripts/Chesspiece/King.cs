@@ -8,7 +8,7 @@ public class King : Chesspiece
         hp = 5;
         skillCount = 3;
         remainedSkills[0] = 3;
-        skillCooltime[0] = 2;
+        skillCooltime[0] = 1;
     }
     private void OnDestroy()
     {
@@ -53,7 +53,6 @@ public class King : Chesspiece
 
     public override void SkillAttack1()
     {
-        remainedSkills[0]--;
         int damage = GetDamage(SkillType.SpecialSkill1);
         GameManager.instance.GetComponent<SelectManager>().SetSkillDamageSelectedPiece(damage);
         SetRangedAttackPlate setRangedAttackPlate = GameManager.instance.GetComponent<SetRangedAttackPlate>();

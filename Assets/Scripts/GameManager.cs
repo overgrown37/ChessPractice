@@ -140,4 +140,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int GetCurrentTurn()
+    {
+        return turn;
+    }
+
 }
