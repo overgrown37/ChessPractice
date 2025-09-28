@@ -6,6 +6,7 @@ public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 �
     private GameObject currentTile = null;// 현재 마우스 커서 아래에 있는 타일
     public GameObject currentPiece = null;//
     public GameObject prevPiece = null;
+
     void Update()
     {
         GameObject tileUnderCursor = null;// 현재 마우스 커서 아래에 있는 타일을 저장할 변수
@@ -31,13 +32,10 @@ public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 �
             if (hit.collider.CompareTag("Tile"))// 충돌한 오브젝트 중 "Tile" 태그를 가진 오브젝트만 처리
             {
                 tileUnderCursor = hit.collider.gameObject;// 타일 오브젝트를 저장
-                
-                
                 PieceOnTile = tileUnderCursor.GetComponent<TileCoord>().GetChesspiece();//
                 break;
             }
         }
-
 
         if (tileUnderCursor != currentTile)// 현재 타일과 마우스 커서 아래의 타일이 다를 때만 색상 변경
         {
@@ -55,23 +53,45 @@ public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 �
                 TileColor newTile = tileUnderCursor.GetComponent<TileColor>();
                 if (newTile != null)
                     newTile.SetHighlight();
+                if (tileUnderCursor.GetComponent<TileCoord>().GetChesspiece())
+                {
+                    GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
+                    foreach (var c in EveryPiece)
+                    {
+                        c.GetComponent<Chesspiece>().HideUIHover();
+                    }
+                }
             }
 
             // 현재 타일 업데이트
             currentTile = tileUnderCursor;
         }
+        
         if (currentPiece != PieceOnTile)
         {
             // 이전 기물 UI 끄기
             if (prevPiece != null)
             {
-                prevPiece.GetComponent<Chesspiece>().HideUIHover();
+                GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
+                foreach (var c in EveryPiece)
+                {
+                    c.GetComponent<Chesspiece>().HideUIHover();
+                }
             }
 
             // 새 기물 UI 켜기
             if (PieceOnTile != null)
             {
-                PieceOnTile.GetComponent<Chesspiece>().ShowUIHover();
+                if (currentTile.GetComponent<TileCoord>().IsAttack())
+                {
+                    //공격중일때
+                    int damage = GameManager.instance.GetComponent<SelectManager>().GetSkillDamageSelectedPiece();
+                    PieceOnTile.GetComponent<Chesspiece>().ShowUIDamage(damage);
+                }
+                else
+                {
+                    PieceOnTile.GetComponent<Chesspiece>().ShowUIHover();
+                }                 
             }
 
             prevPiece = PieceOnTile;

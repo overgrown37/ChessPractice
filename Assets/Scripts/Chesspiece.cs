@@ -134,6 +134,11 @@ public class Chesspiece : MonoBehaviour
         hpUI.ShowFromHover(this.gameObject);
     }
 
+    public void ShowUIDamage(int damage)
+    {
+        hpUI.ShowHealth(this.gameObject, damage);
+    }
+
     public void HideUIHover()
     {
         hpUI.OnHoverExit();

@@ -126,6 +126,7 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
     {
         GameManager.instance.GetComponent<SelectManager>().AttackSelectedPiece();// 선택된 체스말의 공격 함수 호출
         GameManager.instance.SetAllChesspieceCollidersEnabled(false);
+        GameManager.instance.isAttacking = true;
         DeactiveButton();
     }
 

@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public bool isInverted = false; //카메라 회전 확인용
     [SerializeField] private Next_turn_UI turnBanner;
 
+    public bool isAttacking = false;
+
     private void Awake()
     {
         if (instance == null)// GameManager 싱글톤 패턴 구현
@@ -88,6 +90,11 @@ public class GameManager : MonoBehaviour
             MultiAttackCheck();
 
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            checkAttack();
+        }
     }
     
     public void ChangeView()
@@ -133,5 +140,12 @@ public class GameManager : MonoBehaviour
             if (col != null)
                 col.enabled = enabled;
         }
+    }
+
+    public void checkAttack()
+    {
+        int damage = GameManager.instance.GetComponent<SelectManager>().GetSkillDamageSelectedPiece();
+        Debug.Log(GameManager.instance.isAttacking + "," + damage);
+
     }
 }

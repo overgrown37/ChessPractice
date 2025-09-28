@@ -53,6 +53,7 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                     GameManager.instance.GetComponent<SetAttackPlate>().ClearAttackPlates();
                     GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece(); // 선택된 말 비우기
                     GameManager.instance.GetComponent<PlayerManager>().NextPlayer(); // 다음 플레이어로 전환
+                    GameManager.instance.isAttacking = false;
                 }
                 else
                 {
@@ -94,6 +95,7 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                     GameManager.instance.GetComponent<SetRangedAttackPlate>().ClearRangedAttackPlates();
                     GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece(); // 선택된 말 비우기
                     GameManager.instance.GetComponent<PlayerManager>().NextPlayer(); // 다음 플레이어로 전환
+                    GameManager.instance.isAttacking = false;
             }
             else
             {
