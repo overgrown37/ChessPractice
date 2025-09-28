@@ -10,6 +10,9 @@ public class SelectManager : MonoBehaviour// 선택 관리 스크립트
     [SerializeField]
     private int skillDamage = 0;// 선택된 체스말의 데미지
 
+    [SerializeField]
+    private int currentSkillType = -1;
+
     public GameObject GetSelectedPiece()// 현재 선택된 체스말 반환
     {
         return selectedPiece;
@@ -64,6 +67,7 @@ public class SelectManager : MonoBehaviour// 선택 관리 스크립트
     {
         if (selectedPiece != null)
         {
+            currentSkillType = 0; // 스킬 인덱스 설정
             selectedPiece.GetComponent<Chesspiece>().SkillAttack1();// 스킬 함수 호출
         }
     }
@@ -72,6 +76,7 @@ public class SelectManager : MonoBehaviour// 선택 관리 스크립트
     {
         if (selectedPiece != null)
         {
+            currentSkillType = 1;
             selectedPiece.GetComponent<Chesspiece>().SkillAttack2();// 스킬 함수 호출
         }
     }
@@ -91,6 +96,17 @@ public class SelectManager : MonoBehaviour// 선택 관리 스크립트
         GameManager.instance.GetComponent<SetMovePlate>().ClearMovePlates(); // 이동 가능한 타일 제거
         GameManager.instance.GetComponent<SetAttackPlate>().ClearAttackPlates(); // 공격 가능한 타일 제거
         GameManager.instance.GetComponent<SetRangedAttackPlate>().ClearRangedAttackPlates();//범위 공격 타일 제거
+    }
+
+    public int GetCurrentSkillType()
+    {
+        return currentSkillType;
+    }
+
+    // 스킬 타입 초기화
+    public void ResetSkillType()
+    {
+        currentSkillType = -1;
     }
 
 }

@@ -87,7 +87,13 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                             }
                         }
                     }
-                    if (GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack == true)
+
+                int currentSkillType = GameManager.instance.GetComponent<SelectManager>().GetCurrentSkillType();
+
+                attackerCp.GetComponent<Chesspiece>().StartCoolTime(currentSkillType); // 스킬 쿨타임 시작
+                attackerCp.UseSkill(currentSkillType); // 스킬 개수 감소
+
+                if (GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack == true)
                         GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack = false;
                     if (GameManager.instance.GetComponent<SetRangedAttackPlate>().roundAttack == true)
                         GameManager.instance.GetComponent<SetRangedAttackPlate>().roundAttack = false;

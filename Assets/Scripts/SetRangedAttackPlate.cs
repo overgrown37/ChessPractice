@@ -194,7 +194,7 @@ public class SetRangedAttackPlate : MonoBehaviour
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             // 2. 마우스 위치에 가장 가까운 타일 좌표 계산 (보드 위치에 맞게 조정)
-            int mouseX = Mathf.RoundToInt(mouseWorldPos.x + 3.5f);
+            int mouseX = Mathf.RoundToInt(mouseWorldPos.x + 3.7f);
             int mouseY = Mathf.RoundToInt(mouseWorldPos.y + 3.5f);
 
             // 3. 마우스 아래 타일과 인접 4방향 타일에 범위 공격 타일 생성

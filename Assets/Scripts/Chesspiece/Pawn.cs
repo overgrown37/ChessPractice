@@ -9,7 +9,7 @@ public class Pawn : Chesspiece
         hp = 2;
         skillCount = 2;
     }
-    //private void OnDestroy() //ÀÏ´Ü ÆÄ±«µÇ´Â°Å ÄÄÆÄÀÏ¿ëÀ¸·Î pawn¿¡µµ ³Ö¾îµÒ
+    //private void OnDestroy() //ï¿½Ï´ï¿½ ï¿½Ä±ï¿½ï¿½Ç´Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½ pawnï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½
     //{
         
     //    if (!gameObject.scene.isLoaded) return;
@@ -17,6 +17,7 @@ public class Pawn : Chesspiece
 
     //    GameManager.instance.GameOver(this);
     //}
+ 
     public override void Move()
     {
         int x = GetXBoard();

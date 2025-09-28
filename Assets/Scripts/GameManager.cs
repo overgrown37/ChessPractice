@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Next_turn_UI turnBanner;
 
     public bool isAttacking = false;
+    public int turn = 1;
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
 
         string winner = (deadKing.player == "white") ? "Black" : "White";
 
-        // 👉 UI 컨트롤러가 비활성화여도 찾아서 켜서 보여줌
+        // UI 컨트롤러가 비활성화여도 찾아서 켜서 보여줌
         var ui = FindObjectOfType<GameOverController>(true);
         if (ui != null) ui.Show(winner, "King destroyed");
     }
@@ -116,6 +117,8 @@ public class GameManager : MonoBehaviour
         foreach (var piece in EveryPiece)
             piece.transform.DORotate(new Vector3(0, 0, 180), 1f, RotateMode.WorldAxisAdd);
 
+        turn++;  // 턴 계산
+
         isInverted = !isInverted;
     }
     public void MultiAttackCheck()
@@ -131,6 +134,7 @@ public class GameManager : MonoBehaviour
     {
         return isInverted;
     }
+
     public void SetAllChesspieceCollidersEnabled(bool enabled)
     {
         GameObject[] pieces = GameObject.FindGameObjectsWithTag("Chesspiece");
@@ -148,4 +152,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(GameManager.instance.isAttacking + "," + damage);
 
     }
+    public int GetCurrentTurn()
+    {
+        return turn;
+    }
+
 }
