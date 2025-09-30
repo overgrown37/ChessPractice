@@ -1638,7 +1638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1062020797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2316,6 +2316,7 @@ MonoBehaviour:
   Camera: {fileID: 519420028}
   isInverted: 0
   turnBanner: {fileID: 738377962}
+  isAttacking: 0
   turn: 1
 --- !u!114 &1579459096
 MonoBehaviour:
@@ -2432,6 +2433,7 @@ MonoBehaviour:
   fanAttack: 0
   roundAttack: 0
   roundRange: 1
+  delayTime: 0.3
 --- !u!225 &1579459103
 CanvasGroup:
   m_ObjectHideFlags: 0
