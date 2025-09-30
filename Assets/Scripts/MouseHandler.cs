@@ -21,6 +21,7 @@ public class MouseHandler : MonoBehaviour// 마우스 커서가 타일 위에 �
             GameManager.instance.SetAllChesspieceCollidersEnabled(true);
             // (타일 상태 초기화는 SetEmptySelectedPiece에서 이미 처리됨)
             GameManager.instance.GetComponent<ButtonManager>().DeactiveButton();
+            GameManager.instance.GetComponent<ButtonManager>().DeactiveBackButton();
             GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack = false;
             GameManager.instance.GetComponent<SetRangedAttackPlate>().roundAttack = false;
         }

@@ -205,6 +205,9 @@ public class Chesspiece : MonoBehaviour
         if (skillIndex >= 0 && skillIndex < remainedSkills.Length)
         {
             remainedSkills[skillIndex] = Mathf.Max(0, remainedSkills[skillIndex] - 1);
+        }
+    }
+
     private void OnMouseEnter()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
