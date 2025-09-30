@@ -3,6 +3,7 @@ using UnityEngine;
 public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
 {
     private TileCoord tileCoord;// 타일 좌표를 관리하는 스크립트
+    private GameObject ghostPieceInstance; //잔상용
 
     void Start()
     {
@@ -108,5 +109,51 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                 Debug.Log("선택된 체스말이 없습니다.");
             }
         }
+    
+    }
+    private void OnMouseEnter()
+    {
+        if (UnityEngine.EventSystems.EventSystem.current != null && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        if (tileCoord.IsMove())
+        {
+            GameObject selectedPiece = GameManager.instance.GetComponent<SelectManager>().GetSelectedPiece();
+            if (selectedPiece != null)
+            {
+                // 잔상 오브젝트 생성
+                ghostPieceInstance = new GameObject("GhostPiece");
+                ghostPieceInstance.transform.position = transform.position;
+                ghostPieceInstance.transform.localScale = selectedPiece.transform.localScale;
+                ghostPieceInstance.transform.rotation = selectedPiece.transform.rotation; //rotation 복사
+                // SpriteRenderer 복사
+                SpriteRenderer srcRenderer = selectedPiece.GetComponent<SpriteRenderer>();
+                SpriteRenderer ghostRenderer = ghostPieceInstance.AddComponent<SpriteRenderer>();
+                ghostRenderer.sprite = srcRenderer.sprite;
+                ghostRenderer.sortingLayerID = srcRenderer.sortingLayerID;
+                ghostRenderer.sortingOrder = srcRenderer.sortingOrder + 1;
+                Color c = srcRenderer.color;
+                c.a = 0.5f;
+                ghostRenderer.color = c;
+            }
+        }
+    }
+    private void OnMouseExit()
+    {
+        if (ghostPieceInstance != null)
+        {
+            Destroy(ghostPieceInstance);
+            ghostPieceInstance = null;
+        }
+    }
+    public void ForceShowGhost()
+    {
+        if (ghostPieceInstance == null)
+            OnMouseEnter();
+    }
+    public void ForceHideGhost()
+    {
+        if (ghostPieceInstance != null)
+            OnMouseExit();
     }
 }

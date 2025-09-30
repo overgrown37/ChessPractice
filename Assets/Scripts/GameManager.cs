@@ -43,13 +43,13 @@ public class GameManager : MonoBehaviour
         string winner = (deadKing.player == "white") ? "Black" : "White";
 
         // UI 컨트롤러가 비활성화여도 찾아서 켜서 보여줌
-        var ui = FindObjectOfType<GameOverController>(true);
+        var ui = FindFirstObjectByType<GameOverController>(UnityEngine.FindObjectsInactive.Include);
         if (ui != null) ui.Show(winner, "King destroyed");
     }
     public void ClearGameOverFlag()
     {
         IsGameOver = false;
-        var gameOverController = FindObjectOfType<GameOverController>();
+        var gameOverController = FindFirstObjectByType<GameOverController>(UnityEngine.FindObjectsInactive.Include);
         if (gameOverController != null)
             gameOverController.SetGameOver(false);
     }

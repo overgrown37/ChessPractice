@@ -207,4 +207,29 @@ public class Chesspiece : MonoBehaviour
             remainedSkills[skillIndex] = Mathf.Max(0, remainedSkills[skillIndex] - 1);
         }
     }
+
+    private void OnMouseEnter()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
+        if (hit.collider != null)
+        {
+            TileState tileState = hit.collider.GetComponent<TileState>();
+            if (tileState != null)
+            {
+                tileState.ForceShowGhost();
+            }
+        }
+    }
+    private void OnMouseExit()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
+        if (hit.collider != null)
+        {
+            TileState tileState = hit.collider.GetComponent<TileState>();
+            if (tileState != null)
+            {
+                tileState.ForceHideGhost();
+            }
+        }
+    }
 }
