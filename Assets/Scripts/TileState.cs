@@ -53,6 +53,7 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                     GameManager.instance.GetComponent<SetAttackPlate>().ClearAttackPlates();
                     GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece(); // 선택된 말 비우기
                     GameManager.instance.GetComponent<PlayerManager>().NextPlayer(); // 다음 플레이어로 전환
+                    GameManager.instance.isAttacking = false;
                 }
                 else
                 {
@@ -86,7 +87,13 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                             }
                         }
                     }
-                    if (GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack == true)
+
+                int currentSkillType = GameManager.instance.GetComponent<SelectManager>().GetCurrentSkillType();
+
+                attackerCp.GetComponent<Chesspiece>().StartCoolTime(currentSkillType); // 스킬 쿨타임 시작
+                attackerCp.UseSkill(currentSkillType); // 스킬 개수 감소
+
+                if (GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack == true)
                         GameManager.instance.GetComponent<SetRangedAttackPlate>().fanAttack = false;
                     if (GameManager.instance.GetComponent<SetRangedAttackPlate>().roundAttack == true)
                         GameManager.instance.GetComponent<SetRangedAttackPlate>().roundAttack = false;
@@ -94,6 +101,7 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                     GameManager.instance.GetComponent<SetRangedAttackPlate>().ClearRangedAttackPlates();
                     GameManager.instance.GetComponent<SelectManager>().SetEmptySelectedPiece(); // 선택된 말 비우기
                     GameManager.instance.GetComponent<PlayerManager>().NextPlayer(); // 다음 플레이어로 전환
+                    GameManager.instance.isAttacking = false;
             }
             else
             {

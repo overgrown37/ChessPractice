@@ -7,6 +7,8 @@ public class King : Chesspiece
     {
         hp = 5;
         skillCount = 3;
+        remainedSkills[0] = 3;
+        skillCooltime[0] = 1;
     }
     private void OnDestroy()
     {

@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public bool isInverted = false; //카메라 회전 확인용
     [SerializeField] private Next_turn_UI turnBanner;
 
+    public bool isAttacking = false;
+    public int turn = 1;
+
     private void Awake()
     {
         if (instance == null)// GameManager 싱글톤 패턴 구현
@@ -88,6 +91,11 @@ public class GameManager : MonoBehaviour
             MultiAttackCheck();
 
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            checkAttack();
+        }
     }
     
     public void ChangeView()
@@ -109,6 +117,8 @@ public class GameManager : MonoBehaviour
         foreach (var piece in EveryPiece)
             piece.transform.DORotate(new Vector3(0, 0, 180), 1f, RotateMode.WorldAxisAdd);
 
+        turn++;  // 턴 계산
+
         isInverted = !isInverted;
     }
     public void MultiAttackCheck()
@@ -124,6 +134,7 @@ public class GameManager : MonoBehaviour
     {
         return isInverted;
     }
+
     public void SetAllChesspieceCollidersEnabled(bool enabled)
     {
         GameObject[] pieces = GameObject.FindGameObjectsWithTag("Chesspiece");
@@ -134,4 +145,16 @@ public class GameManager : MonoBehaviour
                 col.enabled = enabled;
         }
     }
+
+    public void checkAttack()
+    {
+        int damage = GameManager.instance.GetComponent<SelectManager>().GetSkillDamageSelectedPiece();
+        Debug.Log(GameManager.instance.isAttacking + "," + damage);
+
+    }
+    public int GetCurrentTurn()
+    {
+        return turn;
+    }
+
 }

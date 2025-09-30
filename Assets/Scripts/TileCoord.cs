@@ -78,6 +78,7 @@ public class TileCoord : MonoBehaviour
         moveState = false;
         attackState = false;
         rangedAttackState = true;
+        //GetChesspiece().GetComponent<Chesspiece>().ShowUIDamage(GameManager.instance.GetComponent<SelectManager>().GetSkillDamageSelectedPiece());
     }
 
     public bool IsMove()//이동 가능 타일인가?

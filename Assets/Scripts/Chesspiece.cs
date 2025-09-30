@@ -10,8 +10,14 @@ public class Chesspiece : MonoBehaviour
     private int yBoard = 0;
 
     protected int hp;
-    protected int MaxHp = 5;//
+    protected int MaxHp = 5;
     protected int skillCount;
+
+    protected int[] remainedSkills = new int[3]{ 1, 1, 1 }; // 남은 스킬 횟수
+    protected int[] skillCooltime = new int[3]{ 1, 1, 1 }; // 스킬 쿨타임
+    protected bool[] is_Cooltime = new bool[3] { false, false, false }; // 스킬 사용 시 쿨타임 중인지 아닌지 나타냄
+    protected int[] turnWhenUsingSkill = new int[3] { -1, -1, -1 }; // 스킬 사용한 턴 기록
+
     [SerializeField] private Sprite[] skill_Img; //스킬 이미지 저장
 
     public enum SkillType
@@ -104,6 +110,17 @@ public class Chesspiece : MonoBehaviour
         return skillCount;
     }
 
+    public int[] GetRemainedSkills() //배열 반환
+    {
+        return remainedSkills; 
+    }
+
+    public int GetRemainedSkill(int index) //특정 남은 스킬 개수 반환
+    {
+        return (remainedSkills != null && index >= 0 && index < remainedSkills.Length)
+               ? remainedSkills[index] : 0;
+    }
+
     public virtual int GetDamage(SkillType skill)
     {
         // 기본값: 일반 공격
@@ -134,6 +151,11 @@ public class Chesspiece : MonoBehaviour
         hpUI.ShowFromHover(this.gameObject);
     }
 
+    public void ShowUIDamage(int damage)
+    {
+        hpUI.ShowHealth(this.gameObject, damage);
+    }
+
     public void HideUIHover()
     {
         hpUI.OnHoverExit();
@@ -145,4 +167,44 @@ public class Chesspiece : MonoBehaviour
     }
 
     public Sprite[] GetSkill_img() => skill_Img; // 스킬 이미지 한번에 가져오기(index X)
+
+    public void StartCoolTime(int i)
+    {
+        is_Cooltime[i] = true; // 쿨타임 시작
+        turnWhenUsingSkill[i] = GameManager.instance.GetCurrentTurn(); // 스킬 시작 턴
+    }
+
+    public bool IsInCoolTime(int i)
+    {
+        int turn = GameManager.instance.GetCurrentTurn();
+
+        if (turnWhenUsingSkill[i] + skillCooltime[i]*2 >= turn && is_Cooltime[i] == true) // 쿨타임 계산
+        {
+            return true;
+        }
+        else // 쿨타임 끝남
+        {
+            is_Cooltime[i] = false;
+            turnWhenUsingSkill[i] = -1; // 초기화
+            return false;
+        }
+    }
+
+    public int GetCoolTimeRemaining(int i)
+    {
+        int turn = GameManager.instance.GetCurrentTurn();
+        if (is_Cooltime[i])
+        {
+            return skillCooltime[i]-((turn - turnWhenUsingSkill[i])/2)+1;
+        }
+        return 0;
+    }
+
+    public void UseSkill(int skillIndex)
+    {
+        if (skillIndex >= 0 && skillIndex < remainedSkills.Length)
+        {
+            remainedSkills[skillIndex] = Mathf.Max(0, remainedSkills[skillIndex] - 1);
+        }
+    }
 }

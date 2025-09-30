@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SetRangedAttackPlate : MonoBehaviour
@@ -12,6 +13,8 @@ public class SetRangedAttackPlate : MonoBehaviour
     public bool roundAttack = false;
     public int roundRange = 1;
 
+    public float delayTime = 0.3f;
+    private float timer = 0.0f;
     public void GetPosition()// 현재 선택된 체스말의 좌표를 가져옴
     {
         GameObject sp = GameManager.instance.GetComponent<SelectManager>().GetSelectedPiece();
@@ -88,8 +91,8 @@ public class SetRangedAttackPlate : MonoBehaviour
 
         // 2. 마우스 위치에 가장 가까운 타일 좌표 계산 (타일의 크기와 위치에 따라 보정 필요)
         // 예시: 타일이 (0,0)~(7,7) 정수 좌표에 정렬되어 있다고 가정
-        int mouseX = Mathf.RoundToInt(mouseWorldPos.x + 4); // 보드 위치에 맞게 조정
-        int mouseY = Mathf.RoundToInt(mouseWorldPos.y + 4);
+        int mouseX = Mathf.RoundToInt(mouseWorldPos.x + 3.5f); // 보드 위치에 맞게 조정
+        int mouseY = Mathf.RoundToInt(mouseWorldPos.y + 3.5f);
 
         // 3. 방향 계산
         int dx = mouseX - xBoard;
@@ -112,11 +115,40 @@ public class SetRangedAttackPlate : MonoBehaviour
         return "center"; // 같은 타일 위에 있을 때
     }
 
+    public void showUI()
+    {
+        TileCoord[] EveryTiles = FindObjectsByType<TileCoord>(FindObjectsSortMode.None);
+        foreach (var tile in EveryTiles)
+        {
+            if (tile.IsRangedAttack())
+            {
+                if (tile.GetComponent<TileCoord>().GetChesspiece() != null)
+                {
+                    tile.GetComponent<TileCoord>().GetChesspiece().GetComponent<Chesspiece>().ShowUIDamage(GameManager.instance.GetComponent<SelectManager>().GetSkillDamageSelectedPiece());
+                }
+            }
+        }
+    }
+
+    public void hideUI()
+    {
+        GameObject[] EveryPiece = GameObject.FindGameObjectsWithTag("Chesspiece");
+        foreach (var c in EveryPiece)
+        {
+            c.GetComponent<Chesspiece>().HideUIHover();
+        }
+    }
+    private void Start()
+    {
+        timer = 0.3f;
+    }
     private void Update()
     {
+        //hideUI();
         if (fanAttack)
         {
             ClearRangedAttackPlates(); // 기존의 공격 타일 제거
+            
             GetPosition(); // 현재 선택된 체스말의 좌표를 가져옴
             string direction = GetMouseDirectionFromPiece(); // 마우스 방향을 가져옴
             // 방향에 따라 공격 타일 생성
@@ -162,7 +194,7 @@ public class SetRangedAttackPlate : MonoBehaviour
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             // 2. 마우스 위치에 가장 가까운 타일 좌표 계산 (보드 위치에 맞게 조정)
-            int mouseX = Mathf.RoundToInt(mouseWorldPos.x + 3.7f);
+            int mouseX = Mathf.RoundToInt(mouseWorldPos.x + 3.5f);
             int mouseY = Mathf.RoundToInt(mouseWorldPos.y + 3.5f);
 
             // 3. 마우스 아래 타일과 인접 4방향 타일에 범위 공격 타일 생성
@@ -175,7 +207,14 @@ public class SetRangedAttackPlate : MonoBehaviour
                 {
                     CreateRangedAttackPlate(tx, ty);
                 }
-            }   
+            }
+        }
+        timer += Time.deltaTime; // 누적 시간 증가
+        if (timer > delayTime)
+        {
+            showUI();
+            //Debug.Log("껄껄");
+            timer = 0.0f;
         }
     }
 }

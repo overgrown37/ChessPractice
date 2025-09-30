@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Next Player: Black");
             player = "black";
         }
-        GetComponent<GameManager>().ChangeView();//ео ╧ы╡Н╦И ╫ца║ ╨╞╟Ф
+        GetComponent<GameManager>().ChangeView();// М└╢ К╟■К─■ К∙▄ Л╧╢К╘■К²╪ М ▄Л═└
+        gameObject.GetComponent<ButtonManager>().DeactiveBackButton();// М└╢ К╟■К─■ К∙▄ К▐▄Л∙└Й╟─Й╦╟ К╡└М┼╪ К╧└М≥°Л└╠М≥■
     }
 }

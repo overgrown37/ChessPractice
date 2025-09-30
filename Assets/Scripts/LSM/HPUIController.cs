@@ -189,4 +189,70 @@ public class HPUIController : MonoBehaviour
         currentHealth = Mathf.Clamp(newHp, 0, maxHealth);
         RefreshSegments();
     }
+
+    public void ShowHealth(GameObject chesspiece, int damage)
+    {
+        ShowHealth(chesspiece); // 기존 체력바 표시
+
+        // 데미지 받은 부분 반짝임 효과
+        StartCoroutine(FlashDamageSegments(damage));
+    }
+
+    private IEnumerator FlashDamageSegments(int damage)
+    {
+        int startIndex = Mathf.Max(currentHealth - damage, 0);
+        int endIndex = Mathf.Min(currentHealth, maxHealth);
+
+        List<Image> damagedSegments = new List<Image>();
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            if (i >= 0 && i < Segments.Count)
+            {
+                damagedSegments.Add(Segments[i].GetComponent<Image>());
+            }
+        }
+
+        if (damagedSegments.Count == 0) yield break;
+
+        // 반짝임 설정
+        Color flashColor = Color.white;
+        float flashDuration = 0.3f;
+        //int flashCount = 5;
+
+        // 원래 색 저장
+        Dictionary<Image, Color> originalColors = new Dictionary<Image, Color>();
+        foreach (var img in damagedSegments)
+        {
+            originalColors[img] = img.color;
+        }
+
+        // 여러 번 반짝이기
+        //for (int f = 0; f < flashCount; f++)
+        //{
+        //    // 전부 흰색
+        //    foreach (var img in damagedSegments)
+        //        img.color = flashColor;
+
+        //    yield return new WaitForSeconds(flashDuration);
+
+        //    // 전부 원래색 복원
+        //    foreach (var kv in originalColors)
+        //        kv.Key.color = kv.Value;
+
+        //    yield return new WaitForSeconds(flashDuration);
+        //}
+        while (true)
+        {
+            foreach (var img in damagedSegments)
+                img.color = flashColor;
+
+            yield return new WaitForSeconds(flashDuration);
+
+            // 전부 원래색 복원
+            foreach (var kv in originalColors)
+                kv.Key.color = kv.Value;
+
+            yield return new WaitForSeconds(flashDuration);
+        }
+    }
 }
