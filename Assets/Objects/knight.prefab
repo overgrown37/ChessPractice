@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpUIPrefab: {fileID: 1035009294986255265, guid: e643749dba1fffe44bf6783d8bd9b7b7, type: 3}
   hpUI: {fileID: 0}
+  skill_Img: []
   white: {fileID: 8769669200613306614, guid: 134fa33877eda83478ab3636a9b7d425, type: 3}
   black: {fileID: -334450713805299198, guid: bbe15b2bab784b945ab629ee269f655b, type: 3}
   Coords: {x: 0, y: 0, z: 0}
@@ -210,3 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453a7c07b0d9d6e4fa017b8516d47d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  hitColor: {r: 1, g: 0.6, b: 0.6, a: 1}
+  holdDuration: 0.5
+  fadeDuration: 0.12
