@@ -63,9 +63,11 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
                 int prevY = cp.GetYBoard();// 선택된 체스말의 이전 Y 좌표
 
                 GameManager.instance.SetPositionEmpty(prevX, prevY); // 1. 원래 위치 비우기
+                GameManager.instance.positions[prevX, prevY].GetComponent<TileState>().SetTileType(TileType.None);// 이전 타일 상태 갱신
 
                 cp.SetXBoard(tileCoord.GetXBoard()); // 2. 새 좌표로 변경
                 cp.SetYBoard(tileCoord.GetYBoard());
+                tileType = TileType.AnotherChesspiece;// 타일 상태 갱신
 
                 GameManager.instance.SetPosition(selectedPiece);     // 3. 새 위치에 배치
                 cp.SetCoords();                                     // 4. 화면상의 위치 갱신
