@@ -22,6 +22,7 @@ public class BoardSeter : MonoBehaviour
         }
 
         SetChessPosittion();
+        TileTypeSet();
     }
 
     public GameObject CreateBoard(int x, int y)
@@ -101,5 +102,17 @@ public class BoardSeter : MonoBehaviour
         cp.SetYBoard(y);
         cp.SetCoords();
         return obj;
+    }
+
+    private void TileTypeSet()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                TileState ts = GameManager.instance.positions[i, j].GetComponent<TileState>();
+                ts.SetTileType();
+            }
+        }
     }
 }

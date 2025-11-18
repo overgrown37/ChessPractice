@@ -27,6 +27,8 @@ public class Chesspiece : MonoBehaviour
         SpecialSkill2,
         // 필요에 따라 추가
     }
+    [SerializeField]
+    int moveDistance;//이동 거리    
 
     public Sprite white, black;
 
@@ -125,6 +127,9 @@ public class Chesspiece : MonoBehaviour
     {
         // 기본값: 일반 공격
         return skill == SkillType.BasicAttack ? 1 : 2;
+    public int GetMoveDistance()//이동 거리 반환
+    {
+        return moveDistance;
     }
 
     public virtual void Move()
