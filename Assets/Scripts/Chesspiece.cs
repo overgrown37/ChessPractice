@@ -8,6 +8,9 @@ public class Chesspiece : MonoBehaviour
     protected int hp;
     protected int skillCount;
 
+    [SerializeField]
+    int moveDistance;//이동 거리    
+
     public Sprite white, black;
 
     public Vector3 Coords = new Vector3();//체스말의 화면상의 좌표(UI 효과를 위해 따로 추가)
@@ -47,6 +50,12 @@ public class Chesspiece : MonoBehaviour
     {
         yBoard = y;
     }
+
+    public int GetMoveDistance()//이동 거리 반환
+    {
+        return moveDistance;
+    }
+
     public virtual void Move()
     {
         // 기본 이동 메서드, 각 체스말 클래스에서 오버라이드하여 구현

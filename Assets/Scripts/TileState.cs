@@ -2,11 +2,49 @@ using UnityEngine;
 
 public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
 {
+    public enum TileType
+    {
+        None = 1,
+        Hill = 2,
+        AnotherChesspiece = 99
+    }
+
     private TileCoord tileCoord;// 타일 좌표를 관리하는 스크립트
+    [SerializeField]
+    TileType tileType;
 
     void Start()
     {
         tileCoord = gameObject.GetComponent<TileCoord>();
+    }
+
+    public TileType GetTileType()
+    {
+        return tileType;
+    }
+
+    public int GetMoveCost()
+    {
+        return (int)tileType;
+    }
+
+    public void SetTileType(TileType newType)
+    {
+        tileType = newType;
+    }
+
+    public void SetTileType()
+    {
+        TileCoord tc = gameObject.GetComponent<TileCoord>();
+        GameObject chesspiece = tc.GetChesspiece();
+        if (chesspiece != null)
+        {
+            tileType = TileType.AnotherChesspiece;
+        }
+        else
+        {
+            tileType = TileType.None; // 기본값 설정
+        }
     }
 
     private void OnMouseUp()// 마우스 클릭 시 호출되는 함수
