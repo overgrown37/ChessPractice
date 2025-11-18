@@ -75,7 +75,10 @@ public class HpHandler : MonoBehaviour
 
     public void KillChesspiece()
     {
+        Chesspiece cp = GetComponent<Chesspiece>();
+        GameManager.instance.positions[cp.GetXBoard(), cp.GetYBoard()].GetComponent<TileState>().SetTileType(TileState.TileType.None);
         Destroy(this.gameObject);
-        GetComponent<Chesspiece>().hpUI.ForceHide();
+        cp.hpUI.ForceHide();
+        
     }
 }

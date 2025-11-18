@@ -48,7 +48,7 @@ public class TileState : MonoBehaviour// 타일 상태 관리 스크립트
         }
     }
 
-    private void OnMouseUp()// 마우스 클릭 시 호출되는 함수
+    public void OnMouseUp()// 마우스 클릭 시 호출되는 함수
     {
         // UI 위에서 클릭된 경우 입력 무시
         if (UnityEngine.EventSystems.EventSystem.current != null && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
