@@ -161,14 +161,14 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
                 bool isInCooltime = piece.GetComponent<Chesspiece>().IsInCoolTime(i);
                 int coolTimeRemaining = piece.GetComponent<Chesspiece>().GetCoolTimeRemaining(i);
 
-                Debug.Log($"=== 버튼 {i} 텍스트 처리 ===");
-                Debug.Log($"isInCooltime: {isInCooltime}");
-                Debug.Log($"coolTimeRemaining: {coolTimeRemaining}");
-                Debug.Log($"remainedSkills[{i}]: {remainedSkills[i]}");
+                //Debug.Log($"=== 버튼 {i} 텍스트 처리 ===");
+                //Debug.Log($"isInCooltime: {isInCooltime}");
+                //Debug.Log($"coolTimeRemaining: {coolTimeRemaining}");
+                //Debug.Log($"remainedSkills[{i}]: {remainedSkills[i]}");
 
                 // 스킬 남은 개수 또는 쿨타임 텍스트 설정
                 TextMeshProUGUI skillCountText = btn.GetComponentInChildren<TextMeshProUGUI>();
-                Debug.Log($"skillCountText 찾기 결과: {skillCountText?.name}");
+                //Debug.Log($"skillCountText 찾기 결과: {skillCountText?.name}");
 
                 if (skillCountText != null)
                 {
@@ -177,7 +177,7 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
                         // 쿨타임 중이면 남은 턴 수 표시
                         skillCountText.text = coolTimeRemaining.ToString();
                         skillCountText.color = Color.red; // 쿨타임 중일 때 빨간색
-                        Debug.Log($"쿨타임 텍스트 설정: {coolTimeRemaining}");
+                        //Debug.Log($"쿨타임 텍스트 설정: {coolTimeRemaining}");
                     }
                     else
                     {
@@ -188,7 +188,7 @@ public class ButtonManager : MonoBehaviour// 버튼 관리 스크립트(체스�
                 }
                 else
                 {
-                    Debug.LogWarning($"[ButtonManager] {btn.name} 버튼에서 Text 컴포넌트를 찾을 수 없습니다!");
+                    //Debug.LogWarning($"[ButtonManager] {btn.name} 버튼에서 Text 컴포넌트를 찾을 수 없습니다!");
                 }
 
                 iconIndex++;

@@ -41,14 +41,14 @@ public class BoardSeter : MonoBehaviour
 
     private void SetChessPosittion()
     {
-        GameManager.instance.playerBlack = new GameObject[] { AllocateChesspiece("rook", 0, 0), AllocateChesspiece("knight", 1, 0),
-            AllocateChesspiece("bishop", 2, 0), AllocateChesspiece("queen", 3, 0), AllocateChesspiece("king", 4, 0),
+        GameManager.instance.playerBlack = new GameObject[] { AllocateChesspiece("rook", 0, 0, 1), AllocateChesspiece("knight", 1, 0, 1),
+            AllocateChesspiece("bishop", 2, 0, 1), AllocateChesspiece("queen", 3, 0), AllocateChesspiece("king", 4, 0),
             AllocateChesspiece("bishop", 5, 0), AllocateChesspiece("knight", 6, 0), AllocateChesspiece("rook", 7, 0),
             AllocateChesspiece("pawn", 0, 1), AllocateChesspiece("pawn", 1, 1), AllocateChesspiece("pawn", 2, 1),
             AllocateChesspiece("pawn", 3, 1), AllocateChesspiece("pawn", 4, 1), AllocateChesspiece("pawn", 5, 1),
             AllocateChesspiece("pawn", 6, 1), AllocateChesspiece("pawn", 7, 1) };
-        GameManager.instance.playerWhite = new GameObject[] { AllocateChesspiece("rook", 0, 7), AllocateChesspiece("knight", 1, 7),
-            AllocateChesspiece("bishop", 2, 7), AllocateChesspiece("queen", 3, 7), AllocateChesspiece("king", 4, 7),
+        GameManager.instance.playerWhite = new GameObject[] { AllocateChesspiece("rook", 0, 7, 1), AllocateChesspiece("knight", 1, 7, 1),
+            AllocateChesspiece("bishop", 2, 7, 1), AllocateChesspiece("queen", 3, 7), AllocateChesspiece("king", 4, 7),
             AllocateChesspiece("bishop", 5, 7), AllocateChesspiece("knight", 6, 7), AllocateChesspiece("rook", 7, 7),
             AllocateChesspiece("pawn", 0, 6), AllocateChesspiece("pawn", 1, 6), AllocateChesspiece("pawn", 2, 6),
             AllocateChesspiece("pawn", 3, 6), AllocateChesspiece("pawn", 4, 6), AllocateChesspiece("pawn", 5, 6),
@@ -56,17 +56,17 @@ public class BoardSeter : MonoBehaviour
 
         foreach(GameObject piece in GameManager.instance.playerWhite)
         {
-            piece.GetComponent<SpriteRenderer>().sprite = piece.GetComponent<Chesspiece>().white;
+            piece.GetComponent<SpriteRenderer>().sprite = piece.GetComponent<Chesspiece>().spritenum == 0 ? piece.GetComponent<Chesspiece>().white : piece.GetComponent<Chesspiece>().white2;
             piece.GetComponent<Chesspiece>().player = "white";
         }
         foreach (GameObject piece in GameManager.instance.playerBlack)
         {
-            piece.GetComponent<SpriteRenderer>().sprite = piece.GetComponent<Chesspiece>().black;
+            piece.GetComponent<SpriteRenderer>().sprite = piece.GetComponent<Chesspiece>().spritenum == 0 ? piece.GetComponent<Chesspiece>().black : piece.GetComponent<Chesspiece>().black2;
             piece.GetComponent<Chesspiece>().player = "black";
         }
     }
 
-    private GameObject AllocateChesspiece(string name, int x, int y)
+    private GameObject AllocateChesspiece(string name, int x, int y, int sprite = 0)
     {
         GameObject obj = null;
 
@@ -94,7 +94,7 @@ public class BoardSeter : MonoBehaviour
         {
             obj = Instantiate(pawn, new Vector3(0, 0, -1), Quaternion.identity);
         }
-
+        obj.GetComponent<Chesspiece>().spritenum = sprite;
         GameManager.instance.positions[x, y].GetComponent<TileCoord>().SetChesspiece(obj);
         Chesspiece cp = obj.GetComponent<Chesspiece>();
         cp.SetXBoard(x);

@@ -28,7 +28,8 @@ public class Chesspiece : MonoBehaviour
         // 필요에 따라 추가
     }
 
-    public Sprite white, black;
+    public Sprite white, black, white2, black2;
+    public int spritenum;
 
     public Vector3 Coords = new Vector3();//체스말의 화면상의 좌표(UI 효과를 위해 따로 추가)
     public string player;//체스 말이 어느 편인지

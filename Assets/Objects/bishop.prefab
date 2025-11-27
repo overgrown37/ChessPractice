@@ -111,8 +111,11 @@ MonoBehaviour:
   hpUIPrefab: {fileID: 1035009294986255265, guid: e643749dba1fffe44bf6783d8bd9b7b7, type: 3}
   hpUI: {fileID: 0}
   skill_Img: []
-  white: {fileID: 7560534232159598683, guid: 78396bb0319bf6642a228dba7bf2bdde, type: 3}
-  black: {fileID: -6414592721767173361, guid: 0460bfc6245f1244891faae4659e0dcf, type: 3}
+  white: {fileID: 5230315298482327370, guid: a14349c0245ec1641bf285e03c0fa222, type: 3}
+  black: {fileID: -364634677084320278, guid: e166f80ca072ffe4ba4869edbecbeba4, type: 3}
+  white2: {fileID: 3103704089714702197, guid: 12bf1109ea2faeb4399f3af066f307fd, type: 3}
+  black2: {fileID: 5333064750460397393, guid: 7ab7ff529e72a354bb86afdeea3940ac, type: 3}
+  spritenum: 0
   Coords: {x: 0, y: 0, z: 0}
   player: 
 --- !u!114 &1730806635993676556
