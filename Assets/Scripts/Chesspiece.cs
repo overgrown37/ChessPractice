@@ -171,8 +171,16 @@ public class Chesspiece : MonoBehaviour
 
     public void StartCoolTime(int i)
     {
-        is_Cooltime[i] = true; // 쿨타임 시작
-        turnWhenUsingSkill[i] = GameManager.instance.GetCurrentTurn(); // 스킬 시작 턴
+        if (i == 0 || i == 1 || i == 2)
+        {
+            is_Cooltime[i] = true; // 쿨타임 시작
+            turnWhenUsingSkill[i] = GameManager.instance.GetCurrentTurn(); // 스킬 시작 턴
+        }
+
+        else
+        {
+            return;
+        }
     }
 
     public bool IsInCoolTime(int i)
