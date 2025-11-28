@@ -112,7 +112,7 @@ MonoBehaviour:
   hpUI: {fileID: 0}
   skill_Img: []
   white: {fileID: -3868812660829053132, guid: e1f119414b9d55b43be2905333002f0f, type: 3}
-  black: {fileID: -1220813446033613808, guid: 16715e5b21da1f446b577ff7b76eb472, type: 3}
+  black: {fileID: -4705055276911839084, guid: 446cdca2bbda0f14fa5991398c4f3f54, type: 3}
   white2: {fileID: 0}
   black2: {fileID: 0}
   spritenum: 0
