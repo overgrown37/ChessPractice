@@ -5,7 +5,7 @@ public class MoveRangeCalculate : MonoBehaviour
 {
     public List<Vector2Int> GetMovableTilesWithinManhattanDistance(int startX, int startY, int moveDistance)
     {
-        List<Vector2Int> movableTiles = new List<Vector2Int>();
+        List<Vector2Int> possibleTiles = new List<Vector2Int>();
 
         // 맨해튼 거리가 moveDistance 이하인 모든 타일을 검사
         for (int x = 0; x < 8; x++)
@@ -18,11 +18,11 @@ public class MoveRangeCalculate : MonoBehaviour
                 // 맨해튼 거리가 이동력 이하이고, 보드 범위 내에 있는 경우
                 if (manhattanDistance <= moveDistance && manhattanDistance > 0)
                 {
-                    movableTiles.Add(new Vector2Int(x, y));
+                    possibleTiles.Add(new Vector2Int(x, y));
                 }
             }
         }
 
-        return movableTiles;
+        return possibleTiles;
     }
 }
