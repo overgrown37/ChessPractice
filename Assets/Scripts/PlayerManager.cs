@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -16,14 +15,14 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("Next Player: White");
             player = "white";
-            
+
         }
         else
         {
             Debug.Log("Next Player: Black");
             player = "black";
         }
-        GetComponent<GameManager>().ChangeView();// 턴 바뀔 때 카메라 회전
-        gameObject.GetComponent<ButtonManager>().DeactiveBackButton();// 턴 바뀔 때 돌아가기 버튼 비활성화
+        GetComponent<GameManager>().ChangeView(); // 턴 바뀔 때 카메라 회전
+        gameObject.GetComponent<ButtonManager>().DeactiveBackButton(); // 턴 바뀔 때 돌아가기 버튼 비활성화
     }
 }
